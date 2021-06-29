@@ -4,20 +4,28 @@ export default class DeviceStore {
     constructor() {
         this._types = [
             {id: 1, name: 'Холодильники'},
-            {id: 2, name: 'Смартфоны'}
+            {id: 2, name: 'Телевизоры'},
+            {id: 3, name: 'Стиралки'},
+            {id: 4, name: 'Ноутбуки'},
+            {id: 5, name: 'Смартфоны'}
         ]
         this._brands = [
             {id: 1, name: 'Samsung'},
-            {id: 2, name: '{Xiaomi}'}
+            {id: 2, name: 'Xiaomi'},
+            {id: 3, name: 'Lg'},
+            {id: 4, name: 'Lenovo'},
+            {id: 5, name: 'Apple'}
         ]
         this._devices = [
-            {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
-            {id: 2, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
-            {id: 3, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
-            {id: 4, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
-            {id: 5, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
-            {id: 6, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''}
+            {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
+            {id: 2, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
+            {id: 3, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
+            {id: 4, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
+            {id: 5, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
+            {id: 6, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'}
         ]
+        this._selectedType = {}
+        this._selectedBrand = {}
         makeAutoObservable(this)
     }
 
@@ -26,11 +34,19 @@ export default class DeviceStore {
     }
 
     setBrands(brands){
-        this.brands = brands
+        this._brands = brands
     }
 
     setDevices(devices){
-        this.devices = devices
+        this._devices = devices
+    }
+
+    setSelectedType(type){
+        this._selectedType = type
+    }
+
+    setSelectedBrand(brand){
+        this._selectedBrand = brand
     }
 
     get types(){
@@ -45,4 +61,11 @@ export default class DeviceStore {
         return this._devices
     }
 
+    get selectedType(){
+        return this._selectedType
+    }
+
+    get selectedBrand(){
+        return this._selectedBrand
+    }
 }
