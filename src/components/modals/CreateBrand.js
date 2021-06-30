@@ -1,8 +1,9 @@
-import React from 'react';
-import {Button, Form, Modal} from "react-bootstrap";
+import React, {useContext} from 'react';
+import {Button, Dropdown, Form, Modal} from "react-bootstrap";
+import {Context} from "../../index";
 
 const CreateBrand = ({show, onHide}) => {
-    console.log(onHide)
+    const {device} = useContext(Context)
     return (
         <Modal
             show={show}
@@ -11,12 +12,19 @@ const CreateBrand = ({show, onHide}) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Добавить новый тип
+                    Добавить новый бренд
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Control placeholder={'Введите названия типа'}/>
+                    <Dropdown>
+                        <Dropdown.Toggle>Выбрать бренд</Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            {device.brands.map(brand =>
+                                <Dropdown.Item key={brand.id}>{brand.name}</Dropdown.Item>
+                            )}
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

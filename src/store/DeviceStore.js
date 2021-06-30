@@ -18,11 +18,11 @@ export default class DeviceStore {
         ]
         this._devices = [
             {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
-            {id: 2, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
-            {id: 3, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
-            {id: 4, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
-            {id: 5, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
-            {id: 6, name: 'Iphone 12 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'}
+            {id: 2, name: 'Iphone 11 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
+            {id: 3, name: 'Iphone 10 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
+            {id: 4, name: 'Iphone 9 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
+            {id: 5, name: 'Iphone 8 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'},
+            {id: 6, name: 'Iphone 7 pro', price: 25000, rating: 5, img: 'http://lorempixel.com/300/400/technics'}
         ]
         this._selectedType = {}
         this._selectedBrand = {}

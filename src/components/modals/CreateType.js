@@ -1,7 +1,9 @@
-import React from 'react';
-import {Button, Form, Modal} from "react-bootstrap";
+import React, {useContext} from 'react';
+import {Button, Dropdown, Form, Modal} from "react-bootstrap";
+import {Context} from "../../index";
 
 const CreateType = ({show, onHide}) => {
+    const {device} = useContext(Context)
     return (
         <Modal show={show} onHide={onHide} size="lg" centered>
             <Modal.Header closeButton>
@@ -11,7 +13,14 @@ const CreateType = ({show, onHide}) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Control placeholder={'Введите названия типа'}/>
+                    <Dropdown>
+                        <Dropdown.Toggle>Выбрать тип</Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            {device.types.map(type =>
+                                <Dropdown.Item key={type.id}>{type.name}</Dropdown.Item>
+                            )}
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
