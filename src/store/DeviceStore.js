@@ -1,6 +1,21 @@
 import {makeAutoObservable} from 'mobx';
+import {ApolloClient, InMemoryCache, useQuery} from "@apollo/client";
+import {TRACKS} from "../pages/tracks";
+import React from "react";
 
-export default class DeviceStore {
+// const client = new ApolloClient({
+//     uri: 'https://48p1r2roz4.sse.codesandbox.io',
+//     cache: new InMemoryCache()
+// });
+
+// function F() {
+//     const {loading, error, data} = useQuery(TRACKS);
+//     if (loading) return 'Loading...';
+//     if (error) return `Error! ${error.message}`;
+//     return <div >{JSON.stringify(data)}</div>;
+// }
+
+ export default class DeviceStore {
     constructor() {
         this._types = [
             {id: 1, name: 'Холодильники'},
@@ -69,3 +84,5 @@ export default class DeviceStore {
         return this._selectedBrand
     }
 }
+
+// export {DeviceStore, F}

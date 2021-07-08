@@ -3,10 +3,13 @@ import {Switch, Router, Route, Redirect} from 'react-router-dom'
 import {authRoutes, publicRoutes} from "../routes";
 import {SHOP_ROUTE} from "../utils/consts";
 import {Context} from "../index";
+import {useReactiveVar} from "@apollo/client";
+import {cartItemsVar, userIsLogin} from "../store/cache";
 
 const AppRouter = () => {
-    const {user} = useContext(Context)
-    console.log(user)
+    // const {user} = useContext(Context)
+    // console.log(user)
+    const user = useReactiveVar(userIsLogin)
     return (
         <Switch>
             {user.isAuth && authRoutes.map(({path, Component})=>

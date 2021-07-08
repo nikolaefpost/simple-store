@@ -1,10 +1,13 @@
 import React, {useContext, useState} from 'react';
 import {Button, Col, Dropdown, Form, Modal, Row} from "react-bootstrap";
 import {Context} from "../../index";
+import {useReactiveVar} from "@apollo/client";
+import {cartItemsVar} from "../../store/cache";
 
 const CreateDevice = ({show, onHide}) => {
-    const {device} = useContext(Context)
+    // const {device} = useContext(Context)
     const [info, setInfo] =useState([])
+    const cartItems = useReactiveVar(cartItemsVar);
     console.log(info)
     const addInfo = ()=>{
         setInfo([...info, {title: '', description: '', number: Date.now()}])
@@ -24,16 +27,16 @@ const CreateDevice = ({show, onHide}) => {
                     <Dropdown>
                         <Dropdown.Toggle>Выбрать тип</Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {device.types.map(type =>
-                                <Dropdown.Item key={type.id}>{type.name}</Dropdown.Item>
+                            {cartItems.map(item =>
+                                <Dropdown.Item key={item.id}>{item.category}</Dropdown.Item>
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
                     <Dropdown className='mt-3'>
                         <Dropdown.Toggle>Выбрать бренд</Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {device.brands.map(brand =>
-                                <Dropdown.Item key={brand.id}>{brand.name}</Dropdown.Item>
+                            {cartItems.map(item =>
+                                <Dropdown.Item key={item.id}>{item.brand}</Dropdown.Item>
                             )}
                         </Dropdown.Menu>
                     </Dropdown>

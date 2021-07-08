@@ -8,10 +8,17 @@ import Button from "react-bootstrap/Button";
 import {observer} from "mobx-react-lite";
 import Container from "react-bootstrap/Container";
 import {useHistory} from 'react-router-dom'
+import { useReactiveVar } from '@apollo/client';
+import {cartItemsVar, userIsLogin} from "../store/cache";
+
+
 
 const NavBar = observer( () => {
-    const {user} = useContext(Context);
+    // const {user} = useContext(Context);
     const history = useHistory();
+    const cartItems = useReactiveVar(cartItemsVar);
+    const user = useReactiveVar(userIsLogin)
+console.log(cartItemsVar)
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
@@ -31,7 +38,7 @@ const NavBar = observer( () => {
                     </Nav>
                     :
                     <Nav className="ml-auto" style={{color: 'white'}}>
-                        <Button variant={'outline-light'} onClick={()=>user.setIsAuth(true)}>Авторизация</Button>
+                        <Button variant={'outline-light'} onClick={()=>userIsLogin({isAuth: true})}>Авторизация</Button>
                     </Nav>
                 }
             </Container>

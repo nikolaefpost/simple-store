@@ -1,9 +1,12 @@
 import React, {useContext} from 'react';
 import {Button, Dropdown, Form, Modal} from "react-bootstrap";
 import {Context} from "../../index";
+import {useReactiveVar} from "@apollo/client";
+import {cartItemsVar} from "../../store/cache";
 
 const CreateType = ({show, onHide}) => {
-    const {device} = useContext(Context)
+    // const {device} = useContext(Context)
+    const cartItems = useReactiveVar(cartItemsVar);
     return (
         <Modal show={show} onHide={onHide} size="lg" centered>
             <Modal.Header closeButton>
@@ -16,8 +19,8 @@ const CreateType = ({show, onHide}) => {
                     <Dropdown>
                         <Dropdown.Toggle>Выбрать тип</Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {device.types.map(type =>
-                                <Dropdown.Item key={type.id}>{type.name}</Dropdown.Item>
+                            {cartItems.map(item =>
+                                <Dropdown.Item key={item.id}>{item.category}</Dropdown.Item>
                             )}
                         </Dropdown.Menu>
                     </Dropdown>

@@ -2,17 +2,31 @@ import React, {createContext} from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import UserStore from "./store/UserStore";
-import DeviceStore from "./store/DeviceStore";
+import  DeviceStore from "./store/DeviceStore";
 
-export const Context = createContext(null)
+import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
+export const client = new ApolloClient({
+    uri: 'https://small-night.us-east-1.aws.cloud.dgraph.io/graphql',
+    cache: new InMemoryCache()
+});
+
 
 ReactDOM.render(
-    <Context.Provider value={{
-        user: new UserStore(),
-        device: new DeviceStore()
-    }}>
+    <ApolloProvider client={client}>
         <App />
-    </Context.Provider>,
-  document.getElementById('root')
+    </ApolloProvider>,
+    document.getElementById('root')
 );
+
+// export const Context = createContext(null)
+//
+// ReactDOM.render(
+//     <Context.Provider value={{
+//         user: new UserStore(),
+//         device: new DeviceStore()
+//     }}>
+//         <App />
+//     </Context.Provider>,
+//   document.getElementById('root')
+// );
 

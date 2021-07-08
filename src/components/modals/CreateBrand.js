@@ -1,9 +1,13 @@
 import React, {useContext} from 'react';
 import {Button, Dropdown, Form, Modal} from "react-bootstrap";
-import {Context} from "../../index";
+import {useReactiveVar} from "@apollo/client";
+import {cartItemsVar} from "../../store/cache";
+// import {Context} from "../../index";
 
 const CreateBrand = ({show, onHide}) => {
-    const {device} = useContext(Context)
+    // const {device} = useContext(Context)
+    const cartItems = useReactiveVar(cartItemsVar);
+    console.log(cartItems)
     return (
         <Modal
             show={show}
@@ -20,8 +24,8 @@ const CreateBrand = ({show, onHide}) => {
                     <Dropdown>
                         <Dropdown.Toggle>Выбрать бренд</Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {device.brands.map(brand =>
-                                <Dropdown.Item key={brand.id}>{brand.name}</Dropdown.Item>
+                            {cartItems.map(item =>
+                                <Dropdown.Item key={item.id}>{item.brand}</Dropdown.Item>
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
