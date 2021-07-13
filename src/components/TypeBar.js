@@ -1,26 +1,25 @@
-import React, {useContext} from 'react';
-import {observer} from "mobx-react-lite";
-import {Context} from "../index";
+import React from 'react';
 import {ListGroup} from "react-bootstrap";
 import {makeVar, useReactiveVar} from "@apollo/client";
-import {cartItemsVar} from "../store/cache";
+import {cartCategoriesVar, TypeIsSelected} from "../store/cache";
 export const selectedType = makeVar({isSelect: false});
 
-const TypeBar = observer( () => {
-    // const {device} = useContext(Context)
-    const cartItems = useReactiveVar(cartItemsVar);
+const TypeBar = () => {
+
+    const cartCategories = useReactiveVar(cartCategoriesVar);
+    console.log(cartCategories)
     return (
         <ListGroup>
-            {cartItems.map(item =>
+            {cartCategories.map(item =>
             <ListGroup.Item style={{cursor: 'pointer'}}
-                active={selectedType.isSelect}
-                onClick={()=> selectedType({isSelect: true})}
-                key={item.id}>
-                {item.category}
+                active={item.isSelected}
+                onClick={()=> TypeIsSelected({...item, isSelected: !item.isSelected})}
+                key={item.name[0]}>
+                {item.name}
             </ListGroup.Item>
             )}
         </ListGroup>
     );
-});
+};
 
 export default TypeBar;

@@ -1,13 +1,16 @@
-import React, {useContext} from 'react';
+import React, {useRef, useState} from 'react';
 import {Button, Dropdown, Form, Modal} from "react-bootstrap";
-import {useReactiveVar} from "@apollo/client";
-import {cartItemsVar} from "../../store/cache";
-// import {Context} from "../../index";
+import {useMutation} from "@apollo/client";
+import {ADD_BRAND} from "../../gql/query";
+import {AddBrend} from "../../store/cache";
+// import {useReactiveVar} from "@apollo/client";
+// import {cartBrandsVar} from "../../store/cache";
+
 
 const CreateBrand = ({show, onHide}) => {
-    // const {device} = useContext(Context)
-    const cartItems = useReactiveVar(cartItemsVar);
-    console.log(cartItems)
+    let input;
+    const [addBrand, { data }] = useMutation(ADD_BRAND);
+
     return (
         <Modal
             show={show}
@@ -20,23 +23,25 @@ const CreateBrand = ({show, onHide}) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form>
-                    <Dropdown>
-                        <Dropdown.Toggle>Выбрать бренд</Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {cartItems.map(item =>
-                                <Dropdown.Item key={item.id}>{item.brand}</Dropdown.Item>
-                            )}
-                        </Dropdown.Menu>
-                    </Dropdown>
+                <Form onSubmit={e => {
+                    e.preventDefault();
+                    addBrand({ variables: { name: input.value } });
+                    input.value = '';
+                }}>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Выбрать бренд</Form.Label>
+                        <Form.Control  ref={node => {input = node;}}/>
+                    </Form.Group>
+                    <Button variant='outline-success' type="submit">Добавить</Button>
+
                 </Form>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant='outline-danger' onClick={onHide}>Закрыть</Button>
-                <Button variant='outline-success' onClick={onHide}>Добавить</Button>
             </Modal.Footer>
         </Modal>
     );
 };
+
 
 export default CreateBrand;

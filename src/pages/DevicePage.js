@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Route } from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import {Button, Card, Col, Container, Image, Row} from "react-bootstrap";
 import bigStar from '../assets/BigStar.png'
 import {useReactiveVar} from "@apollo/client";
@@ -8,22 +8,13 @@ import {cartItemsVar} from "../store/cache";
 const DevicePage = () => {
     const {id} = useParams()
     const cartItems = useReactiveVar(cartItemsVar);
+    console.log(cartItems)
     const device = cartItems.filter(item => item.id === id)[0]
 
+
     console.log(device)
-    // const device =  {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5,
-    //     img: 'http://lorempixel.com/300/400/technics'};
-    const description = [
-        {id: 1, title: 'Оперативная память', description: '6 гб'},
-        {id: 2, title: 'Оперативная память', description: '6 гб'},
-        {id: 3, title: 'Оперативная память', description: '6 гб'},
-        {id: 4, title: 'Оперативная память', description: '6 гб'},
-        {id: 5, title: 'Оперативная память', description: '6 гб'},
-        {id: 6, title: 'Оперативная память', description: '6 гб'},
-        {id: 7, title: 'Оперативная память', description: '6 гб'},
-        {id: 8, title: 'Оперативная память', description: '6 гб'},
-        {id: 9, title: 'Оперативная память', description: '6 гб'}
-    ]
+
+
     return (
         <Container className='mt-3'>
             <Row>
@@ -50,6 +41,9 @@ const DevicePage = () => {
                 </Col>
             </Row>
             <h1>Характеристики</h1>
+            <Row className='d-flex flex-column  m-3'>
+                <div>{device.description_long}</div>
+            </Row>
             <Row className='d-flex flex-column  m-3'>
 
                 {device.specification.map((info, index)=>

@@ -1,12 +1,14 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Button, Dropdown, Form, Modal} from "react-bootstrap";
-import {Context} from "../../index";
-import {useReactiveVar} from "@apollo/client";
-import {cartItemsVar} from "../../store/cache";
+import {useMutation, useReactiveVar} from "@apollo/client";
+import {cartCategoriesVar} from "../../store/cache";
+import {ADD_CATEGORY} from "../../gql/query";
 
 const CreateType = ({show, onHide}) => {
-    // const {device} = useContext(Context)
-    const cartItems = useReactiveVar(cartItemsVar);
+    let input;
+    const [addCategory, { data }] = useMutation(ADD_CATEGORY);
+    // const cartCategories = useReactiveVar(cartCategoriesVar);
+    // console.log(cartCategories)
     return (
         <Modal show={show} onHide={onHide} size="lg" centered>
             <Modal.Header closeButton>
@@ -15,20 +17,20 @@ const CreateType = ({show, onHide}) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form>
-                    <Dropdown>
-                        <Dropdown.Toggle>Выбрать тип</Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {cartItems.map(item =>
-                                <Dropdown.Item key={item.id}>{item.category}</Dropdown.Item>
-                            )}
-                        </Dropdown.Menu>
-                    </Dropdown>
+                <Form onSubmit={e => {
+                    e.preventDefault();
+                    addCategory({ variables: { name: input.value } });
+                    input.value = '';
+                }}>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Выбрать категорию</Form.Label>
+                        <Form.Control  ref={node => {input = node;}}/>
+                    </Form.Group>
+                    <Button variant='outline-success' type="submit">Добавить</Button>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant='outline-danger' onClick={onHide}>Закрыть</Button>
-                <Button variant='outline-success' onClick={onHide}>Добавить</Button>
             </Modal.Footer>
         </Modal>
     );

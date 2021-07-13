@@ -1,12 +1,11 @@
-import React, {createContext} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import UserStore from "./store/UserStore";
-import  DeviceStore from "./store/DeviceStore";
+
 
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 export const client = new ApolloClient({
-    uri: 'https://small-night.us-east-1.aws.cloud.dgraph.io/graphql',
+    uri: 'https://floral-voice.eu-central-1.aws.cloud.dgraph.io/graphql',
     cache: new InMemoryCache()
 });
 
