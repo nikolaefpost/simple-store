@@ -1,14 +1,12 @@
 import React from 'react';
 import {Button, Dropdown, Form, Modal} from "react-bootstrap";
-import {useMutation, useReactiveVar} from "@apollo/client";
-import {cartCategoriesVar} from "../../store/cache";
+import {useMutation} from "@apollo/client";
 import {ADD_CATEGORY} from "../../gql/query";
 
 const CreateType = ({show, onHide}) => {
     let input;
     const [addCategory, { data }] = useMutation(ADD_CATEGORY);
-    // const cartCategories = useReactiveVar(cartCategoriesVar);
-    // console.log(cartCategories)
+
     return (
         <Modal show={show} onHide={onHide} size="lg" centered>
             <Modal.Header closeButton>

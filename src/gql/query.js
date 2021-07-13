@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import {gql} from '@apollo/client';
 
 export const GET_PRODUCTS = gql`
     query MyQuery {
@@ -59,7 +59,7 @@ export const ADD_BRAND = gql`
 
 export const ADD_CATEGORY = gql`
     mutation AddCategory($name: String!) {
-        addCategory(input: {name: $name}) {
+        addCategory(input: {name: $name}, ) {
             numUids
             category {
                 name
@@ -69,25 +69,55 @@ export const ADD_CATEGORY = gql`
 
 `;
 
+// export const ADD_PRODUCT = gql`
+//     mutation AddProduct($name: String!, $quantity: Int!, $availability: Boolean!, $price: Float!, $specification: [About!],
+//                         $image_src: String!, $brand: Brand, $category:  [CategoryRef], $description_shot: String,
+//                         $description_long: String)
+//     {
+//         addProduct(input: {
+//             name: $name,
+//             quantity: $quantity,
+//             availability: $availability,
+//             price: $price,
+//             specification: $specification,
+//             image_src: $image_src,
+//             brand: $brand,
+//             category: $category,
+//             description_long: $description_long,
+//             description_shot: $description_shot}) {
+//             numUids
+//             product {
+//                 name
+//             }
+//         }
+//     }
+//
+// `;
+
 export const ADD_PRODUCT = gql`
-    mutation AddProduct($name: String!, $quantity: Int!, $availability: Boolean!, $price: Float!, $specification: [About!],
-                        $image_src: String!, $brand: Brand, $category: [Category], $description_shot: String,
-                        $description_long: String) 
+    mutation AddProduct($product: [AddProductInput!]!)
     {
-        addProduct(input: {
-            name: $name,
-            quantity: $quantity,
-            availability: $availability,
-            price: $price,
-            specification: $specification,
-            image_src: $image_src,
-            brand: $brand,
-            category: $category,
-            description_long: $description_long,
-            description_shot: $description_shot}) {
+        addProduct(input: $product) {
             numUids
             product {
                 name
+            }
+        }
+    }
+
+`;
+
+export const ADD_USER = gql`
+    mutation AddUser($user_name: String!, $phone: Int!, $email: String!)
+    {
+        addUser(input: {
+            user_name: $user_name,
+            phone: $phone,
+            email: $email
+        }) {
+            numUids
+            user {
+                user_name
             }
         }
     }

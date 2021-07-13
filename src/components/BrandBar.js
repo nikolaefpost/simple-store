@@ -1,9 +1,9 @@
 
 import {Card, ListGroup, Row} from "react-bootstrap";
-import {makeVar, useReactiveVar} from "@apollo/client";
+import { useReactiveVar} from "@apollo/client";
 import {cartBrandsVar, BrandIsSelected} from "../store/cache";
 import  React from "react";
-export const selectedBrand = makeVar({isSelect: false});
+
 
 const BrandBar = () => {
 

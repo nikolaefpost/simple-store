@@ -55,8 +55,8 @@ const CreateDevice = ({show, onHide}) => {
                             availability: true,
                             price: input_price.value,
                             image_src: input_image.value,
-                            category: {name: input_category.value},
-                            brand: [{name: input_brand.value}],
+                            category: [input_category.value],
+                            brand: {name: input_brand.value},
                             specification: info,
                             description_shot: input_shot,
                             description_long: input_long
@@ -69,8 +69,8 @@ const CreateDevice = ({show, onHide}) => {
                                 availability: true,
                                 price: input_price.value,
                                 image_src: input_image.value,
-                                category: {name: input_category.value},
-                                brand: [{name: input_brand.value}],
+                                category: [{name: input_category.value}],
+                                brand: {name: input_brand.value},
                                 specification: info,
                                 description_shot: input_shot,
                                 description_long: input_long

@@ -7,7 +7,8 @@ export const cartItemsVar = makeVar([]);
 export const cartBrandsVar = makeVar([]);
 export const cartCategoriesVar = makeVar([]);
 
-let user = {isAuth: false}
+
+let user = {isAdmin: false, isAuth: false, name: null}
 export const userIsLogin = makeVar(user);
 
 export function GetProducts() {
@@ -48,3 +49,9 @@ export function TypeIsSelected(item) {
     brands.unshift(item);
     cartCategoriesVar(brands);
 }
+
+// export function AddBrend(brand) {
+//     const [addTodo, { data }] = useMutation(ADD_BRAND);
+//     addTodo({ variables: { type: brand } });
+//     return data;
+// }
