@@ -69,43 +69,41 @@ export const ADD_CATEGORY = gql`
 
 `;
 
-// export const ADD_PRODUCT = gql`
-//     mutation AddProduct($name: String!, $quantity: Int!, $availability: Boolean!, $price: Float!, $specification: [About!],
-//                         $image_src: String!, $brand: Brand, $category:  [CategoryRef], $description_shot: String,
-//                         $description_long: String)
-//     {
-//         addProduct(input: {
-//             name: $name,
-//             quantity: $quantity,
-//             availability: $availability,
-//             price: $price,
-//             specification: $specification,
-//             image_src: $image_src,
-//             brand: $brand,
-//             category: $category,
-//             description_long: $description_long,
-//             description_shot: $description_shot}) {
-//             numUids
-//             product {
-//                 name
-//             }
-//         }
-//     }
-//
-// `;
-
 export const ADD_PRODUCT = gql`
-    mutation AddProduct($product: [AddProductInput!]!)
+    mutation AddProduct($name: String!, $quantity: Int!, $availability: Boolean!, $price: Float!, $specification: [AboutRef],
+                        $image_src: String!, $brand: BrandRef, $category:  [CategoryRef], $description_shot: String,
+                        $description_long: String)
     {
-        addProduct(input: $product) {
+        addProduct(input: {
+            name: $name,
+            quantity: $quantity,
+            availability: $availability,
+            price: $price,
+            specification: $specification,
+            image_src: $image_src,
+            brand: $brand,
+            category: $category,
+            description_long: $description_long,
+            description_shot: $description_shot}) {
             numUids
             product {
-                name
+                id
             }
         }
     }
-
 `;
+
+// export const ADD_PRODUCT = gql`
+//     mutation addProduct($products: [AddProductInput!]!) {
+//         addProduct(input: $products) {
+//             product {
+//                 id
+//             }
+//         }
+//     }
+// `;
+
+
 
 export const ADD_USER = gql`
     mutation AddUser($user_name: String!, $phone: Int!, $email: String!)

@@ -5,7 +5,10 @@ import {useReactiveVar} from "@apollo/client";
 import {cartBrandsVar, cartCategoriesVar, cartItemsVar} from "../store/cache";
 
 const DeviceList =  () => {
+
     const cartItems = useReactiveVar(cartItemsVar);
+    console.log(cartItems)
+
 
     const selectedBrands = useReactiveVar(cartBrandsVar).filter(brand=>brand.isSelected)
     const nameBrands = [];

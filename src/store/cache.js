@@ -8,13 +8,14 @@ export const cartBrandsVar = makeVar([]);
 export const cartCategoriesVar = makeVar([]);
 
 
-let user = {isAdmin: false, isAuth: false, name: null}
+let user = {isAdmin: true, isAuth: false, name: null}
 export const userIsLogin = makeVar(user);
 
 export function GetProducts() {
     const { loading, error, data } = useQuery(GET_PRODUCTS);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
+    console.log(data)
     cartItemsVar(data.queryProduct)
 }
 
@@ -22,6 +23,7 @@ export function GetBrands() {
     const { loading, error, data } = useQuery(GET_BRANDS);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
+    console.log(data.queryBrand)
     cartBrandsVar(data.queryBrand)
 }
 
@@ -43,6 +45,7 @@ export function BrandIsSelected(item) {
     brands.unshift(item);
     cartBrandsVar(brands);
 }
+
 
 export function TypeIsSelected(item) {
     const brands = cartCategoriesVar().filter(type=>type.name !==item.name)

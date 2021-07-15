@@ -8,12 +8,13 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import {useHistory} from 'react-router-dom'
 import { useReactiveVar } from '@apollo/client';
-import {userIsLogin} from "../store/cache";
+import {GetBrands, GetCategory, GetProducts, userIsLogin} from "../store/cache";
 import UserAvatar from "./UserAvatar";
 
 
 
 const NavBar =  () => {
+
     const history = useHistory();
     const user = useReactiveVar(userIsLogin)
     console.log(user)

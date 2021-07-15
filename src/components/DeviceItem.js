@@ -7,7 +7,7 @@ import {useReactiveVar} from "@apollo/client";
 import {cartBrandsVar} from "../store/cache";
 
 const DeviceItem = ({device}) => {
-
+    console.log(device.brand)
     const history = useHistory();
 
     return (
@@ -16,7 +16,7 @@ const DeviceItem = ({device}) => {
                   onClick={() => history.push(DEVICE_ROUTE + '/' + device.id)}>
                 <Image width={150} height={150} src={device.image_src}/>
                 <div className='text-black-50 d-flex justify-content-between align-items-center mt-1'>
-                    <div>{device.brand.name}</div>
+                    <div>{device.brand? device.brand.name: ''}</div>
                     <div className='d-flex align-items-center'>
                         <div>{device.quantity}</div>
                         <Image width={18} height={18} src={star}/>

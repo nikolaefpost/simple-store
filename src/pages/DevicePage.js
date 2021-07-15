@@ -5,7 +5,9 @@ import bigStar from '../assets/BigStar.png'
 import {useReactiveVar} from "@apollo/client";
 import {cartItemsVar} from "../store/cache";
 
+
 const DevicePage = () => {
+
     const {id} = useParams()
     const cartItems = useReactiveVar(cartItemsVar);
     console.log(cartItems)

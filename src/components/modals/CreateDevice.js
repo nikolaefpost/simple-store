@@ -10,7 +10,7 @@ const CreateDevice = ({show, onHide}) => {
         input_category, input_brand, input_title, input_description,
         input_shot, input_long;
     const [addTodo, {data}] = useMutation(ADD_PRODUCT);
-
+    console.log(ADD_PRODUCT)
     const [info, setInfo] = useState([])
     const cartBrands = useReactiveVar(cartBrandsVar);
     const cartCategories = useReactiveVar(cartCategoriesVar);
@@ -48,14 +48,15 @@ const CreateDevice = ({show, onHide}) => {
                         description: input_description? input_description.value: '',
                         number: Date.now()
                     }])
+                    info.shift()
                     addTodo({
                         variables: {
                             name: input_name.value,
-                            quantity: input_quantity.value,
+                            quantity: Number(input_quantity.value),
                             availability: true,
-                            price: input_price.value,
+                            price: Number(input_price.value),
                             image_src: input_image.value,
-                            category: [input_category.value],
+                            category: [{name:input_category.value}],
                             brand: {name: input_brand.value},
                             specification: info,
                             description_shot: input_shot,
@@ -65,9 +66,9 @@ const CreateDevice = ({show, onHide}) => {
                     console.log({
                             variables: {
                                 name: input_name.value,
-                                quantity: input_quantity.value,
+                                quantity: Number(input_quantity.value),
                                 availability: true,
-                                price: input_price.value,
+                                price: Number(input_price.value),
                                 image_src: input_image.value,
                                 category: [{name: input_category.value}],
                                 brand: {name: input_brand.value},
@@ -76,7 +77,7 @@ const CreateDevice = ({show, onHide}) => {
                                 description_long: input_long
                             }
                         })
-                    info.shift()
+
                     console.log(info)
                     // input.value = '';
                 }}>
