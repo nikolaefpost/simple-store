@@ -6,6 +6,7 @@ import React from "react";
 export const cartItemsVar = makeVar([]);
 export const cartBrandsVar = makeVar([]);
 export const cartCategoriesVar = makeVar([]);
+export const cartBasketVar = makeVar([]);
 
 
 let user = {isAdmin: true, isAuth: false, name: null}

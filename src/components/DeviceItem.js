@@ -1,14 +1,21 @@
 import React from 'react';
-import {Card, Col, Image} from "react-bootstrap";
+import {Button, Card, Col, Image} from "react-bootstrap";
 import star from '../assets/star.png'
 import {useHistory} from 'react-router-dom'
 import {DEVICE_ROUTE} from "../utils/consts";
-import {useReactiveVar} from "@apollo/client";
+import {useMutation, useReactiveVar} from "@apollo/client";
 import {cartBrandsVar} from "../store/cache";
+import {DELETE_PRODUCT} from "../gql/query";
 
 const DeviceItem = ({device}) => {
-    console.log(device.brand)
+    const [deleteProduct, { data }] = useMutation(DELETE_PRODUCT);
     const history = useHistory();
+
+    function handleClick() {
+        // e.preventDefault();
+        console.log({ filter: { id: device.id } })
+        deleteProduct({ filter: { id: device.id } });
+    }
 
     return (
         <Col md={3} className='mt-3'>
@@ -24,6 +31,7 @@ const DeviceItem = ({device}) => {
                 </div>
                 <div>{device.name}</div>
             </Card>
+            <Button variant='outline-danger' onClick={handleClick} >Удалить устройство</Button>
         </Col>
     );
 

@@ -122,6 +122,18 @@ export const ADD_USER = gql`
 
 `;
 
+const ProductFilter = {id: "ID"}
+export const DELETE_PRODUCT = gql`
+    mutation deleteProduct($filter: ProductFilter!) {
+        deleteProduct(filter: $filter) {
+            msg
+            product {
+                name
+            }
+        }
+    }
+`;
+
 
 
 

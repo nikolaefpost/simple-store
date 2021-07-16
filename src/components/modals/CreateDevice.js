@@ -10,7 +10,6 @@ const CreateDevice = ({show, onHide}) => {
         input_category, input_brand, input_title, input_description,
         input_shot, input_long;
     const [addTodo, {data}] = useMutation(ADD_PRODUCT);
-    console.log(ADD_PRODUCT)
     const [info, setInfo] = useState([])
     const cartBrands = useReactiveVar(cartBrandsVar);
     const cartCategories = useReactiveVar(cartCategoriesVar);
@@ -78,7 +77,6 @@ const CreateDevice = ({show, onHide}) => {
                             }
                         })
 
-                    console.log(info)
                     // input.value = '';
                 }}>
 
@@ -131,7 +129,7 @@ const CreateDevice = ({show, onHide}) => {
                         Добавить новое свойство
                     </Button>
                     {info.map(i =>
-                        <Row className='mt-4' key={i.number}>
+                        <Row className='mt-2 mb-2' key={i.number}>
                             <Col md={4}>
                                 <Form.Control ref={node => {input_title = node;}} placeholder='Введите название свойства'/>
                             </Col>
@@ -148,6 +146,7 @@ const CreateDevice = ({show, onHide}) => {
                             </Col>
                         </Row>
                     )}
+                    <hr/>
                     <Button variant='outline-success' type="submit">Добавить</Button>
                 </Form>
             </Modal.Body>
