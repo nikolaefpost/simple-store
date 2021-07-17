@@ -34,14 +34,7 @@ const NavBar = () => {
                                         className='ml-2'>
                                     Админ панель
                                 </Button>
-                                <Button variant={'outline-light'}
-                                        onClick={() => {
 
-                                            history.push(BASKET_ROUTE)
-                                        }}
-                                        className='ml-2'>
-                                    Корзина
-                                </Button>
                             </div>
                              :
                             <div/>
@@ -62,9 +55,19 @@ const NavBar = () => {
                                 onClick={() => userIsLogin({...user, isAuth: true})}>Авторизация</Button>
                     </Nav>
                 }
+
                 {user.isAuth ?
                     <UserAvatar/> : <div/>
                 }
+                <Button variant={'outline-light'}
+                        onClick={() => {
+
+                            history.push(BASKET_ROUTE)
+                        }}
+                        className='ml-2'>
+                    Корзина
+                </Button>
+
             </Container>
 
         </Navbar>

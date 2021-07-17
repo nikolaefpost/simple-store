@@ -12,16 +12,15 @@ const DevicePage = () => {
     const cartItems = useReactiveVar(cartItemsVar);
     const cartBasket = useReactiveVar(cartBasketVar);
     const device = cartItems.filter(item => item.id === id)[0]
+    const pursh = {device: device, s:1, id: device.id}
+
     let a = [...cartBasket];
 
-    function handleClick() {
 
-        if (!a.includes(device)) a.push(device)
+    function handleClick() {
+        (!a.filter(item=> item.id === pursh.id).length>0) ? a.push(pursh): a.push();
         cartBasketVar(a)
     }
-
-    console.log(cartBasket)
-
 
     return (
         <Container className='mt-3'>

@@ -29,7 +29,7 @@ const CreateDevice = ({show, onHide}) => {
             }])
         }
     }
-    const remmoveInfo = (number) => {
+    const removeInfo = (number) => {
         setInfo(info.filter(i => i.number !== number))
     }
     return (
@@ -139,7 +139,7 @@ const CreateDevice = ({show, onHide}) => {
                             <Col md={4}>
                                 <Button
                                     variant={'outline-danger'}
-                                    onClick={() => remmoveInfo(i.number)}
+                                    onClick={() => removeInfo(i.number)}
                                 >
                                     Удалить
                                 </Button>
