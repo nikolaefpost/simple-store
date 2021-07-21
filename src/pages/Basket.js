@@ -1,26 +1,25 @@
 import React, {useState} from 'react';
-import {useReactiveVar} from "@apollo/client";
+import {useMutation, useReactiveVar} from "@apollo/client";
 import {cartamountPurchasesVar, cartBasketVar} from "../store/cache";
 import ListGroup from "react-bootstrap/ListGroup";
 import {Button, Container, Row} from "react-bootstrap";
 import Purchase from "../components/Purchase";
 import {useHistory} from "react-router-dom";
 import {SHOP_ROUTE} from "../utils/consts";
+import {ADD_CATEGORY} from "../gql/query";
 
 const Basket = () => {
     const history = useHistory();
     const listBasket = useReactiveVar(cartBasketVar);
-    console.log(listBasket)
+
     const initial = 0;
-    const amountPurchases = listBasket.reduce((acc, cur) => {
-        return acc + cur.device.price * cur.s
-    }, initial)
-
-    cartamountPurchasesVar(amountPurchases)
-
-
+    cartamountPurchasesVar(listBasket.reduce((acc, cur) => {return acc + cur.device.price * cur.s}, initial))
     const amount = useReactiveVar(cartamountPurchasesVar);
-    const [itemPurchases, setItemPurchases] = useState([]);
+
+    let input_name, input_surname, input_phone, input_address ;
+    const [addPurchases, { data }] = useMutation(ADD_CATEGORY);
+
+    // const [itemPurchases, setItemPurchases] = useState([]);
     // const [info, setInfo] = useState([])
     // let input;
     // const addInfo = () => {
@@ -37,7 +36,11 @@ const Basket = () => {
     return (
 
         <Container className='mt-3'>
-            <form>
+            <form onSubmit={e => {
+                e.preventDefault();
+                addPurchases({ variables: { name: '' } });
+                // input.value = '';
+            }}>
                 <h3 className='text-center'>Корзина</h3>
                 <ListGroup className='mb-5'>
                     {listBasket.map(device =>
@@ -47,10 +50,12 @@ const Basket = () => {
                 </ListGroup>
                 <Container>
                     <Row className='ml-0 mr-0 mt-3 justify-content-center'>
-                        <input className='p-2 m-2 w-25' type='text' placeholder='Имя'/><input className='p-2 m-2 w-25' type='text' placeholder='Фамилия'/>
+                        <input className='p-2 m-2 w-25' type='text' placeholder='Имя' ref={node => {input_name = node;}}/>
+                        <input className='p-2 m-2 w-25' type='text' placeholder='Фамилия' ref={node => {input_surname = node;}}/>
                     </Row>
                     <Row className='ml-0 mr-0 mt-3 justify-content-center'>
-                        <input className='p-2 m-2 w-50' type='text' placeholder='Телефон'/><input className='p-2 m-2 w-50' type='text' placeholder='Адрес'/>
+                        <input className='p-2 m-2 w-50' type='text' placeholder='Телефон' ref={node => {input_phone = node;}}/>
+                        <input className='p-2 m-2 w-50' type='text' placeholder='Адрес' ref={node => {input_address = node;}}/>
                     </Row>
                 </Container>
                 <div className='d-flex mt-5 justify-content-between align-items-center'>
@@ -58,7 +63,7 @@ const Basket = () => {
                         покупки</Button>
                     <div className='border border-success rounded p-3'>
                         {amount}₴
-                        <Button variant="success" className='ml-2' onClick={() => console.log(amount)}> Оформить
+                        <Button variant="success" className='ml-2' type="submit"> Оформить
                             заказ</Button>
                     </div>
 

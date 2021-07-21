@@ -10,6 +10,10 @@ import {useHistory} from 'react-router-dom'
 import {useReactiveVar} from '@apollo/client';
 import {GetBrands, GetCategory, GetProducts, userIsLogin} from "../store/cache";
 import UserAvatar from "./UserAvatar";
+import LoginButton from "./login-button";
+import AuthNav from "./auth-nav";
+
+
 
 
 const NavBar = () => {
@@ -52,7 +56,10 @@ const NavBar = () => {
                     :
                     <Nav className="ml-auto" style={{color: 'white'}}>
                         <Button variant={'outline-light'}
-                                onClick={() => userIsLogin({...user, isAuth: true})}>Авторизация</Button>
+                                onClick={() => {
+                                    // login()
+                                    userIsLogin({...user, isAuth: true})
+                                }}>Авторизация</Button>
                     </Nav>
                 }
 
@@ -67,7 +74,7 @@ const NavBar = () => {
                         className='ml-2'>
                     Корзина
                 </Button>
-
+                <AuthNav/>
             </Container>
 
         </Navbar>

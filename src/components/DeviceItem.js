@@ -14,7 +14,7 @@ const DeviceItem = ({device}) => {
     function handleClick() {
         // e.preventDefault();
         console.log({ filter: { id: device.id } })
-        deleteProduct({ filter: { id: device.id } });
+        deleteProduct({ variables:{ filter: { id: device.id } }});
     }
 
     return (
