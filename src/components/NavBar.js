@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import {NavLink} from "react-router-dom";
-import {ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE} from "../utils/consts";
+import {ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, SHOP_ROUTE} from "../utils/consts";
 import Button from "react-bootstrap/Button";
 
 import Container from "react-bootstrap/Container";
@@ -73,6 +73,14 @@ const NavBar = () => {
                         }}
                         className='ml-2'>
                     Корзина
+                </Button>
+                <Button variant={'outline-light'}
+                        onClick={() => {
+
+                            history.push(PROFILE_ROUTE)
+                        }}
+                        className='ml-2'>
+                    Profile
                 </Button>
                 <AuthNav/>
             </Container>

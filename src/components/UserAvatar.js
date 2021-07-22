@@ -7,6 +7,7 @@ import account_avatar from '../assets/account_avatar.png'
 
 const UserAvatar = () => {
 
+
     const user = useReactiveVar(userIsLogin)
 
     return (

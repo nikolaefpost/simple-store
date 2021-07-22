@@ -10,9 +10,9 @@ import {
 } from "./utils/consts";
 import Basket from "./pages/Basket";
 import Shop from "./pages/Shop";
-import Auth from "./pages/Auth";
+import Registration from "./pages/Registration";
 import DevicePage from "./pages/DevicePage";
-import Profile from "./views/profile";
+import Profile from "./pages/Profile";
 
 export  const authRoutes = [
     {
@@ -29,11 +29,11 @@ export  const publicRoutes = [
     },
     {
         path: LOGIN_ROUTE,
-        Component: Auth
+        Component: Registration
     },
     {
         path: REGISTRATION_ROUTE,
-        Component: Auth
+        Component: Registration
     },
     {
         path: DEVICE_ROUTE + '/:id',

@@ -1,8 +1,8 @@
 import {makeVar, useMutation, useQuery, useReactiveVar} from "@apollo/client";
-import {ADD_BRAND, GET_BRANDS, GET_CATEGORY, GET_PRODUCTS} from "../gql/query";
+import {ADD_BRAND, GET_BRANDS, GET_CATEGORY, GET_PRODUCTS, GET_USER} from "../gql/query";
 import React from "react";
 
-
+export const userVar = makeVar([]);
 export const cartItemsVar = makeVar([]);
 export const cartBrandsVar = makeVar([]);
 export const cartCategoriesVar = makeVar([]);
@@ -13,11 +13,19 @@ export const cartamountPurchasesVar = makeVar([]);
 let user = {isAdmin: true, isAuth: false, name: null}
 export const userIsLogin = makeVar(user);
 
+export function GetUser(user_name) {
+    const { loading, error, data } = useQuery(GET_USER, {
+        variables: { user_name }});
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error</p>;
+    console.log(data)
+    userVar(data)
+}
+
 export function GetProducts() {
     const { loading, error, data } = useQuery(GET_PRODUCTS);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
-    console.log(data)
     cartItemsVar(data.queryProduct)
 }
 
@@ -25,7 +33,6 @@ export function GetBrands() {
     const { loading, error, data } = useQuery(GET_BRANDS);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
-    console.log(data.queryBrand)
     cartBrandsVar(data.queryBrand)
 }
 
