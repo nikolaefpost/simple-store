@@ -16,13 +16,13 @@ export const client = new ApolloClient({
 
 ReactDOM.render(
     <ApolloProvider client={client}>
-    <Router>
-        <Auth0ProviderWithHistory>
+        <Router>
+            <Auth0ProviderWithHistory>
 
                 <App/>
 
-        </Auth0ProviderWithHistory>
-    </Router>
+            </Auth0ProviderWithHistory>
+        </Router>
     </ApolloProvider>,
     document.getElementById('root')
 );

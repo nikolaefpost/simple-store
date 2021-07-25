@@ -4,12 +4,13 @@ import star from '../assets/star.png'
 import {useHistory} from 'react-router-dom'
 import {DEVICE_ROUTE} from "../utils/consts";
 import {useMutation, useReactiveVar} from "@apollo/client";
-import {cartBrandsVar} from "../store/cache";
+import {cartBrandsVar, isAdminVar} from "../store/cache";
 import {DELETE_PRODUCT} from "../gql/query";
 
 const DeviceItem = ({device}) => {
     const [deleteProduct, { data }] = useMutation(DELETE_PRODUCT);
     const history = useHistory();
+    const isAdmin = useReactiveVar(isAdminVar)
 
     function handleClick() {
         // e.preventDefault();
@@ -31,7 +32,9 @@ const DeviceItem = ({device}) => {
                 </div>
                 <div>{device.name}</div>
             </Card>
-            <Button variant='outline-danger' onClick={handleClick} >Удалить устройство</Button>
+            {isAdmin &&
+            <Button variant='outline-danger' onClick={handleClick}>Удалить устройство</Button>
+            }
         </Col>
     );
 

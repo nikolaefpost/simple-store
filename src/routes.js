@@ -1,6 +1,6 @@
 import Admin from "./pages/admin";
 import {
-    ADMIN_ROUTE,
+    ADMIN_ROUTE, AUTH_ROUTE,
     BASKET_ROUTE,
     DEVICE_ROUTE,
     LOGIN_ROUTE,
@@ -13,6 +13,7 @@ import Shop from "./pages/Shop";
 import Registration from "./pages/Registration";
 import DevicePage from "./pages/DevicePage";
 import Profile from "./pages/Profile";
+import Auth from "./pages/Auth";
 
 export  const authRoutes = [
     {
@@ -46,5 +47,9 @@ export  const publicRoutes = [
     {
         path: PROFILE_ROUTE,
         Component: Profile
+    },
+    {
+        path: AUTH_ROUTE,
+        Component: Auth
     }
 ]

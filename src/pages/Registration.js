@@ -1,13 +1,13 @@
 import React from 'react';
 import {Container, Form, Button, Row} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import {NavLink, useHistory, useLocation} from "react-router-dom";
-import {DEVICE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from "../utils/consts";
+import { useHistory, useLocation} from "react-router-dom";
+import { LOGIN_ROUTE, SHOP_ROUTE} from "../utils/consts";
 import {useMutation, useReactiveVar} from "@apollo/client";
 import { ADD_USER} from "../gql/query";
 import {userIsLogin} from "../store/cache";
 
-const isAuth = false;
+
 const Registration = () => {
     const history = useHistory();
     const user = useReactiveVar(userIsLogin)
@@ -24,15 +24,20 @@ const Registration = () => {
                    style={{height: window.innerHeight - 54}}
         >
             <Card style={{width: 600}} className='p-5'>
-                <h2 className='m-auto'>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
+                <h2 className='m-auto'>Регистрация</h2>
                 <Form className='d-flex flex-column' onSubmit={e => {
                     e.preventDefault();
                     addUser({ variables: {
                             user_name: input_name.value,
                             phone: Number(input_phone.value),
-                            email: input_email.value
+                            email: input_email.value,
+                            image: null,
+                            role: 'buyer'
+
                     } });
-                    userIsLogin({...user, isAuth: true, name: input_name.value})
+                    const q = input_name.value;
+                    setTimeout(()=>userIsLogin({ isAuth: true, name: q}), 2000)
+
                     history.push(SHOP_ROUTE)
                 }}>
                     <Form.Control
@@ -47,22 +52,10 @@ const Registration = () => {
                         className='mt-2' placeholder='Введите ваш телефон...'
                         ref={node => {input_phone = node;}}
                     />
-                    {/*<Form.Control*/}
-                    {/*    className='mt-3'*/}
-                    {/*    placeholder='Введите ваш пароль...'*/}
-                    {/*/>*/}
                     <Row className='d-flex justify-content-between align-items-center mt-3 px-3'>
-                        {isLogin ?
-                            <div>
-                                Нет аккаунта? <NavLink to={REGISTRATION_ROUTE}>Зарегистрируйся!</NavLink>
-                            </div>
-                            :
-                            <div>
-                                Есть аккаунт? <NavLink to={LOGIN_ROUTE}>Водите!</NavLink>
-                            </div>
-                        }
+
                         <Button variant={'outline-success'} type="submit">
-                            {isLogin ? 'Войти' : 'Регистрация'}
+                            За покупками
                         </Button>
                     </Row>
 

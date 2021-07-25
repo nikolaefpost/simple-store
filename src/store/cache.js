@@ -2,15 +2,17 @@ import {makeVar, useMutation, useQuery, useReactiveVar} from "@apollo/client";
 import {ADD_BRAND, GET_BRANDS, GET_CATEGORY, GET_PRODUCTS, GET_USER} from "../gql/query";
 import React from "react";
 
-export const userVar = makeVar([]);
+export const isAdminVar = makeVar(false);
+export const authNameVar = makeVar([]);
 export const cartItemsVar = makeVar([]);
 export const cartBrandsVar = makeVar([]);
 export const cartCategoriesVar = makeVar([]);
 export const cartBasketVar = makeVar([]);
 export const cartamountPurchasesVar = makeVar([]);
 
-
-let user = {isAdmin: true, isAuth: false, name: null}
+const registeredUser = JSON.parse (localStorage.getItem ("registeredUser"))
+console.log(registeredUser)
+let user =registeredUser? {isAuth: true, name: registeredUser.user_name} : {isAuth: false, name: ''}
 export const userIsLogin = makeVar(user);
 
 export function GetUser(user_name) {
@@ -19,7 +21,7 @@ export function GetUser(user_name) {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
     console.log(data)
-    userVar(data)
+    authNameVar(data)
 }
 
 export function GetProducts() {
