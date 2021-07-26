@@ -15,14 +15,14 @@ console.log(registeredUser)
 let user =registeredUser? {isAuth: true, name: registeredUser.user_name} : {isAuth: false, name: ''}
 export const userIsLogin = makeVar(user);
 
-export function GetUser(user_name) {
-    const { loading, error, data } = useQuery(GET_USER, {
-        variables: { user_name }});
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error</p>;
-    console.log(data)
-    authNameVar(data)
-}
+// export function GetUser(user_name) {
+//     const { loading, error, data } = useQuery(GET_USER, {
+//         variables: { user_name }});
+//     if (loading) return <p>Loading...</p>;
+//     if (error) return <p>Error</p>;
+//     console.log(data)
+//     authNameVar(data)
+// }
 
 export function GetProducts() {
     const { loading, error, data } = useQuery(GET_PRODUCTS);

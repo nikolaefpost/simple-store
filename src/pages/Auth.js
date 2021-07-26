@@ -12,7 +12,7 @@ const Auth = () => {
     const history = useHistory();
     const user = useReactiveVar(userIsLogin)
     let input_name;
-    const [user_name, setUser_name] = useState('');
+    // const [user_name, setUser_name] = useState('');
 
     // const location = useLocation()
     // const isLogin = location.pathname === LOGIN_ROUTE;

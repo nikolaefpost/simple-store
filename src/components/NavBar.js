@@ -2,7 +2,15 @@ import React from 'react';
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import {NavLink} from "react-router-dom";
-import {ADMIN_ROUTE, AUTH_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, SHOP_ROUTE} from "../utils/consts";
+import {
+    ADMIN_ROUTE,
+    AUTH_ROUTE,
+    BASKET_ROUTE,
+    LOGIN_ROUTE,
+    PERSONAL_ROUTE,
+    PROFILE_ROUTE,
+    SHOP_ROUTE
+} from "../utils/consts";
 import Button from "react-bootstrap/Button";
 
 import Container from "react-bootstrap/Container";
@@ -19,6 +27,7 @@ const NavBar = () => {
     const history = useHistory();
     const user = useReactiveVar(userIsLogin)
     const isAdmin = useReactiveVar(isAdminVar)
+    const handleClick = ()=> history.push(PERSONAL_ROUTE)
 
     return (
         <Navbar bg="dark" variant="dark">
@@ -52,6 +61,7 @@ const NavBar = () => {
                                 onClick={() => {
                                     history.push(LOGIN_ROUTE)
                                     userIsLogin({isAuth: false, name: null})
+                                    localStorage.setItem ("registeredUser", null);
                                 }}
                                 className='ml-2'>
                             Выйти
@@ -74,7 +84,7 @@ const NavBar = () => {
                     </Nav>
                 }
 
-                {user.isAuth && <UserAvatar/>}
+                {user.isAuth && <UserAvatar user={user} onClick={handleClick}/>}
 
                 {/*<Button variant={'outline-light'}*/}
                 {/*        onClick={() => {*/}

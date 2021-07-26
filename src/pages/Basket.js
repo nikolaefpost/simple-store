@@ -6,12 +6,14 @@ import {Button, Container, Row} from "react-bootstrap";
 import Purchase from "../components/Purchase";
 import {useHistory} from "react-router-dom";
 import {SHOP_ROUTE} from "../utils/consts";
-import {ADD_PURCHASE} from "../gql/query";
+import {ADD_PURCHASE, UPDATE_PRODUCT} from "../gql/query";
 
 const Basket = () => {
+
     const history = useHistory();
     const listBasket = useReactiveVar(cartBasketVar);
     const user = useReactiveVar(userIsLogin)
+    console.log(user)
     console.log(listBasket[0])
 
     const initial = 0;
@@ -20,8 +22,10 @@ const Basket = () => {
     }, initial))
     const amount = useReactiveVar(cartamountPurchasesVar);
 
-    let input_name, input_surname, input_phone, input_address;
+    let input_first_name, input_surname, input_phone, input_address;
     const [addPurchases, {data}] = useMutation(ADD_PURCHASE);
+    const [updateProduct] = useMutation(UPDATE_PRODUCT);
+
 
     // const [itemPurchases, setItemPurchases] = useState([]);
     // const [info, setInfo] = useState([])
@@ -42,16 +46,50 @@ const Basket = () => {
         <Container className='mt-3'>
             <form onSubmit={e => {
                 e.preventDefault();
-                listBasket.map(purchas => addPurchases({
-                    variables: {
-                        choose_product: {id: purchas.id},
-                        quantity: purchas.s,
-                        buyer: {user_name: user.name},
-                        buyTime: new Date()
-                    }
-                }))
+                listBasket.map(purchas => {
+                    console.log(purchas)
+                    addPurchases({
+                        variables: {
+                            choose_product: {id: purchas.id},
+                            quantity: purchas.s,
+                            buyer: {user_name: user.name ? user.name : 'unregistered'},
+                            buyTime: new Date(),
+                            first_name: input_first_name.value,
+                            surname: input_surname.value,
+                            address: input_address.value,
+                            phone: Number(input_phone.value),
+                            done: false
+                        }
+                    })
+                    const quan = purchas.device.quantity - purchas.s
+                    updateProduct({
+                        variables: {
+                            patch:
+                                {
+                                    filter: {
+                                        id: purchas.id
+                                    },
+                                    set: {
+                                        quantity: quan
+                                    }
+                                }
+                        }
+                    })
+                    console.log({
+                        patch:
+                            {
+                                filter: {
+                                    id: purchas.id
+                                },
+                                set: {
+                                    quantity: quan
+                                }
+                            }
+                    })
+                })
                 ;
-                // input.value = '';
+
+                // cartBasketVar([]);
             }}>
                 <h3 className='text-center'>Корзина</h3>
                 <ListGroup className='mb-5'>
@@ -62,31 +100,29 @@ const Basket = () => {
                 </ListGroup>
                 <Container>
                     <Row className='ml-0 mr-0 mt-3 justify-content-center'>
-                        <input className='p-2 m-2 w-25' type='text' placeholder='Имя' ref={node => {
-                            input_name = node;
+                        <input className='p-2 m-2 w-25' type='text' placeholder='Имя' required ref={node => {
+                            input_first_name = node;
                         }}/>
-                        <input className='p-2 m-2 w-25' type='text' placeholder='Фамилия' ref={node => {
+                        <input className='p-2 m-2 w-25' type='text' placeholder='Фамилия' required ref={node => {
                             input_surname = node;
                         }}/>
                     </Row>
                     <Row className='ml-0 mr-0 mt-3 justify-content-center'>
-                        <input className='p-2 m-2 w-50' type='text' placeholder='Телефон' ref={node => {
+                        <input className='p-2 m-2 w-50' type='number' placeholder='Телефон' required ref={node => {
                             input_phone = node;
                         }}/>
-                        <input className='p-2 m-2 w-50' type='text' placeholder='Адрес' ref={node => {
+                        <input className='p-2 m-2 w-50' type='text' placeholder='Адрес' required ref={node => {
                             input_address = node;
                         }}/>
                     </Row>
                 </Container>
                 <div className='d-flex mt-5 justify-content-between align-items-center'>
-                    <Button variant='outline-success' onClick={() => history.push(SHOP_ROUTE)}>Продолжить
-                        покупки</Button>
+                    <Button variant='outline-success' onClick={() => history.push(SHOP_ROUTE)}>Продолжить покупки
+                    </Button>
                     <div className='border border-success rounded p-3'>
                         {amount}₴
-                        <Button variant="success" className='ml-2' type="submit"> Оформить
-                            заказ</Button>
+                        <Button variant="success" className='ml-2' type="submit"> Оформить заказ</Button>
                     </div>
-
                 </div>
 
 

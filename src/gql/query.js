@@ -10,6 +10,8 @@ export const GET_USER = gql`
             image
             purchases {
                 quantity
+                buyTime
+                done
                 choose_product {
                     image_src
                     name
@@ -126,13 +128,19 @@ export const ADD_PRODUCT = gql`
 // `;
 
 export const ADD_PURCHASE = gql`
-    mutation AddPurchase($choose_product: ProductRef!, $quantity: Int!, $buyer: UserRef!, $buyTime: DateTime!)
+    mutation AddPurchase($choose_product: ProductRef!, $quantity: Int!, $buyer: UserRef!,
+        $buyTime: DateTime!, $first_name: String, $surname: String, $address: String, $phone: Int)
     {
         addPurchase(input: {
             choose_product: $choose_product,
             quantity: $quantity,
             buyer: $buyer,
-            buyTime: $buyTime}) {
+            buyTime: $buyTime,
+            first_name: $first_name,
+            surname: $surname,
+            address: $address,
+            phone: $phone
+        }) {
             numUids
             purchase {
                 id
@@ -174,13 +182,23 @@ export const DELETE_USER = gql`
 `;
 
 
-const ProductFilter = {id: "ID"}
 export const DELETE_PRODUCT = gql`
     mutation deleteProduct($filter: ProductFilter!) {
         deleteProduct(filter: $filter) {
             msg
             product {
                 name
+            }
+        }
+    }
+`;
+
+export const UPDATE_PRODUCT = gql`
+    mutation updateProduct($patch: UpdateProductInput!){
+        updateProduct(input: $patch){
+            product {
+                id
+                quantity
             }
         }
     }

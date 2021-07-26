@@ -3,7 +3,7 @@ import {
     ADMIN_ROUTE, AUTH_ROUTE,
     BASKET_ROUTE,
     DEVICE_ROUTE,
-    LOGIN_ROUTE,
+    LOGIN_ROUTE, PERSONAL_ROUTE,
     PROFILE_ROUTE,
     REGISTRATION_ROUTE,
     SHOP_ROUTE
@@ -14,6 +14,7 @@ import Registration from "./pages/Registration";
 import DevicePage from "./pages/DevicePage";
 import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
+import PersonalArea from "./pages/PersonalArea";
 
 export  const authRoutes = [
     {
@@ -51,5 +52,9 @@ export  const publicRoutes = [
     {
         path: AUTH_ROUTE,
         Component: Auth
+    },
+    {
+        path: PERSONAL_ROUTE,
+        Component: PersonalArea
     }
 ]
