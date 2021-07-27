@@ -9,7 +9,7 @@ import {
     LOGIN_ROUTE,
     PERSONAL_ROUTE,
     PROFILE_ROUTE,
-    SHOP_ROUTE
+    SHOP_ROUTE, TODO_ROUTE
 } from "../utils/consts";
 import Button from "react-bootstrap/Button";
 
@@ -51,7 +51,15 @@ const NavBar = () => {
                                         history.push(ADMIN_ROUTE)
                                     }}
                                     className='ml-2'>
-                                Админ панель
+                                админ панель
+                            </Button>
+                            <Button variant={'outline-light'}
+                                    onClick={() => {
+
+                                        history.push(TODO_ROUTE)
+                                    }}
+                                    className='ml-2'>
+                                заказы
                             </Button>
 
                         </div>

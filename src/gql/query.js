@@ -24,6 +24,7 @@ export const GET_USER = gql`
     }
 `;
 
+
 export const GET_PRODUCTS = gql`
     query MyQuery {
         queryProduct {
@@ -68,6 +69,27 @@ export const GET_CATEGORY = gql`
             isSelected
         }
     }
+`;
+
+export const GET_PURCHASES = gql`
+    query Purchase {
+        queryPurchase(filter: {done: false}) {
+            address
+            buyTime
+            choose_product {
+                name
+                id
+            }
+            first_name
+            id
+            phone
+            quantity
+            surname
+            note
+            done
+        }
+    }
+
 `;
 
 export const ADD_BRAND = gql`
@@ -129,7 +151,8 @@ export const ADD_PRODUCT = gql`
 
 export const ADD_PURCHASE = gql`
     mutation AddPurchase($choose_product: ProductRef!, $quantity: Int!, $buyer: UserRef!,
-        $buyTime: DateTime!, $first_name: String, $surname: String, $address: String, $phone: Int)
+        $buyTime: DateTime!, $first_name: String, $surname: String, $address: String,
+        $phone: Int, $done: Boolean, $note: String)
     {
         addPurchase(input: {
             choose_product: $choose_product,
@@ -139,7 +162,9 @@ export const ADD_PURCHASE = gql`
             first_name: $first_name,
             surname: $surname,
             address: $address,
-            phone: $phone
+            phone: $phone,
+            done: $done,
+            note: $note
         }) {
             numUids
             purchase {
@@ -203,6 +228,32 @@ export const UPDATE_PRODUCT = gql`
         }
     }
 `;
+
+export const UPDATE_DONE_PURCHASE = gql`
+    mutation updatePurchase($patch: UpdatePurchaseInput!) {
+        updatePurchase(input: $patch) {
+            purchase {
+                id
+                done
+            }
+        }
+    }
+`;
+// { variable: {
+//         patch:{
+//             filter:{
+//                 id: ["0x255ced9f4", "0x255ceda22", "0x255ceb761", "0x255ced12d"]
+//             }
+//         ,
+//             set:{
+//                 done: false
+//             }
+//         }
+//     }
+// }
+//
+
+
 
 
 

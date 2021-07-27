@@ -6,7 +6,7 @@ import {
     LOGIN_ROUTE, PERSONAL_ROUTE,
     PROFILE_ROUTE,
     REGISTRATION_ROUTE,
-    SHOP_ROUTE
+    SHOP_ROUTE, TODO_ROUTE
 } from "./utils/consts";
 import Basket from "./pages/Basket";
 import Shop from "./pages/Shop";
@@ -15,11 +15,16 @@ import DevicePage from "./pages/DevicePage";
 import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
 import PersonalArea from "./pages/PersonalArea";
+import TodoList from "./pages/TodoList";
 
 export  const authRoutes = [
     {
         path: ADMIN_ROUTE,
         Component: Admin
+    },
+    {
+        path: TODO_ROUTE,
+        Component: TodoList
     }
 
 ]

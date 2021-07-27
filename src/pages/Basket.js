@@ -22,7 +22,7 @@ const Basket = () => {
     }, initial))
     const amount = useReactiveVar(cartamountPurchasesVar);
 
-    let input_first_name, input_surname, input_phone, input_address;
+    let input_first_name, input_surname, input_phone, input_address, input_note;
     const [addPurchases, {data}] = useMutation(ADD_PURCHASE);
     const [updateProduct] = useMutation(UPDATE_PRODUCT);
 
@@ -58,7 +58,8 @@ const Basket = () => {
                             surname: input_surname.value,
                             address: input_address.value,
                             phone: Number(input_phone.value),
-                            done: false
+                            done: false,
+                            note: input_note.value
                         }
                     })
                     const quan = purchas.device.quantity - purchas.s
@@ -113,6 +114,9 @@ const Basket = () => {
                         }}/>
                         <input className='p-2 m-2 w-50' type='text' placeholder='Адрес' required ref={node => {
                             input_address = node;
+                        }}/>
+                        <input className='p-2 m-2 w-50' type='text' placeholder='Адрес' required ref={node => {
+                            input_note = node;
                         }}/>
                     </Row>
                 </Container>
