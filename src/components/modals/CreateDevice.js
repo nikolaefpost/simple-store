@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {Button, Col, Dropdown, Form, Modal, Row} from "react-bootstrap";
+import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 
-import {useMutation, useReactiveVar} from "@apollo/client";
-import {cartBrandsVar, cartCategoriesVar} from "../../store/cache";
+import {useMutation} from "@apollo/client";
+
 import {ADD_PRODUCT} from "../../gql/query";
 
 const CreateDevice = ({show, onHide}) => {
@@ -11,8 +11,8 @@ const CreateDevice = ({show, onHide}) => {
         input_shot, input_long;
     const [addTodo, {data}] = useMutation(ADD_PRODUCT);
     const [info, setInfo] = useState([])
-    const cartBrands = useReactiveVar(cartBrandsVar);
-    const cartCategories = useReactiveVar(cartCategoriesVar);
+    // const cartBrands = useReactiveVar(cartBrandsVar);
+    // const cartCategories = useReactiveVar(cartCategoriesVar);
 
     const addInfo = () => {
         if(input_title&&input_description) {
@@ -57,30 +57,14 @@ const CreateDevice = ({show, onHide}) => {
                             image_src: input_image.value,
                             category: [{name:input_category.value}],
                             brand: {name: input_brand.value},
-                            specification: info,
-                            description_shot: input_shot,
-                            description_long: input_long
+                            description_shot: input_shot.value,
+                            description_long: input_long.value,
+                            specification: info
+
                         }
                     });
                     // input.value = '';
                 }}>
-
-                    {/*<Dropdown>*/}
-                    {/*    <Dropdown.Toggle>Выбрать тип</Dropdown.Toggle>*/}
-                    {/*    <Dropdown.Menu  >*/}
-                    {/*        {cartCategories.map(item =>*/}
-                    {/*            <Dropdown.Item ref={node => {input_category = node;}} key={item.name} >{item.name}</Dropdown.Item>*/}
-                    {/*        )}*/}
-                    {/*    </Dropdown.Menu>*/}
-                    {/*</Dropdown>*/}
-                    {/*<Dropdown className='mt-3'>*/}
-                    {/*    <Dropdown.Toggle>Выбрать бренд</Dropdown.Toggle>*/}
-                    {/*    <Dropdown.Menu ref={node => {input_brand = node;}}>*/}
-                    {/*        {cartBrands.map(item =>*/}
-                    {/*            <Dropdown.Item key={item.name}>{item.name}</Dropdown.Item>*/}
-                    {/*        )}*/}
-                    {/*    </Dropdown.Menu>*/}
-                    {/*</Dropdown>*/}
 
                     <Form.Control
                         className='mt-3' placeholder='Введите тип устройства'
@@ -99,12 +83,20 @@ const CreateDevice = ({show, onHide}) => {
                         ref={node => {input_price = node;}}
                     />
                     <Form.Control
-                        className='mt-3' placeholder='Введите лол-во устройств' type='number'
+                        className='mt-3' placeholder='Введите кол-во устройств' type='number'
                         ref={node => {input_quantity = node;}}
                     />
                     <Form.Control
-                        className='mt-3' type='file'
+                        className='mt-3' placeholder='Изображение устройства'
                         ref={node => {input_image = node;}}
+                    />
+                    <Form.Control
+                        className='mt-3' placeholder='Введите краткое описание'
+                        ref={node => {input_shot = node;}}
+                    />
+                    <textarea
+                        className="form-control mt-3"  rows="3" placeholder='Введите полное описание'
+                        ref={node => {input_long = node;}}
                     />
                     <hr/>
                     <Button
@@ -132,7 +124,7 @@ const CreateDevice = ({show, onHide}) => {
                         </Row>
                     )}
                     <hr/>
-                    <Button variant='outline-success' type="submit">Добавить</Button>
+                    <Button variant='outline-success' type="submit">Загрузить в базу</Button>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

@@ -3,12 +3,13 @@ import {Col, Container, Row} from "react-bootstrap";
 import TypeBar from "../components/TypeBar";
 import BrandBar from "../components/BrandBar";
 import DeviceList from "../components/DeviceList";
+import Footer from "../components/Footer";
 
 
 const Shop = () => {
 
-    return (
-        <Container>
+    return (<>
+        <Container >
             <Row className='mt-2'>
                 <Col md={3}>
                     <TypeBar/>
@@ -19,6 +20,8 @@ const Shop = () => {
                 </Col>
             </Row>
         </Container>
+    <Footer/>
+    </>
     );
 };
 

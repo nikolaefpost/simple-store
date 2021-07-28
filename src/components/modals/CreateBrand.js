@@ -1,8 +1,8 @@
-import React, {useRef, useState} from 'react';
-import {Button, Dropdown, Form, Modal} from "react-bootstrap";
+import React from 'react';
+import {Button,  Form, Modal} from "react-bootstrap";
 import {useMutation} from "@apollo/client";
 import {ADD_BRAND} from "../../gql/query";
-import {AddBrend} from "../../store/cache";
+
 // import {useReactiveVar} from "@apollo/client";
 // import {cartBrandsVar} from "../../store/cache";
 

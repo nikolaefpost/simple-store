@@ -7,7 +7,6 @@ const Auth0ProviderWithHistory = ({ children }) => {
     const domain = "dev--8ud1s8q.eu.auth0.com";
     const clientId = "7HYe7tdy41XaeGyIZmz9842uBz9VlnIj";
     const history = useHistory();
-    console.log(clientId)
 
     const onRedirectCallback = (appState) => {
         history.push(appState?.returnTo || window.location.pathname);

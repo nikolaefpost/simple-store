@@ -80,6 +80,9 @@ export const GET_PURCHASES = gql`
                 name
                 id
             }
+            buyer{
+                user_name
+            }
             first_name
             id
             phone

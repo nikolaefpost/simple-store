@@ -10,7 +10,7 @@ import {userIsLogin} from "../store/cache";
 
 const Registration = () => {
     const history = useHistory();
-    const user = useReactiveVar(userIsLogin)
+    // const user = useReactiveVar(userIsLogin)
     let input_name, input_phone, input_email;
 
     const [addUser, {data}] = useMutation(ADD_USER);

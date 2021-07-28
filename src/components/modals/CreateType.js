@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Dropdown, Form, Modal} from "react-bootstrap";
+import {Button,  Form, Modal} from "react-bootstrap";
 import {useMutation} from "@apollo/client";
 import {ADD_CATEGORY} from "../../gql/query";
 

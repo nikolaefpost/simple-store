@@ -1,5 +1,5 @@
 
-import {Card, ListGroup, Row} from "react-bootstrap";
+import {Card,  Row} from "react-bootstrap";
 import { useReactiveVar} from "@apollo/client";
 import {cartBrandsVar, BrandIsSelected} from "../store/cache";
 import  React from "react";
@@ -8,7 +8,6 @@ import  React from "react";
 const BrandBar = () => {
 
     const cartBrands = useReactiveVar(cartBrandsVar);
-    console.log(cartBrands)
 
     return (
         <Row className='d-flex'>

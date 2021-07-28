@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import {GetBrands, GetCategory, GetProducts} from "./store/cache";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./components/Loading";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -18,11 +19,12 @@ function App() {
     }
 
     return (
-        <BrowserRouter>
+        <BrowserRouter className='bg-info'>
             {/*<Auth0Provider>*/}
             <NavBar/>
             {/*</Auth0Provider>*/}
             <AppRouter/>
+
         </BrowserRouter>
     );
 }

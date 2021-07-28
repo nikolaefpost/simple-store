@@ -7,7 +7,7 @@ export const selectedType = makeVar({isSelect: false});
 const TypeBar = () => {
 
     const cartCategories = useReactiveVar(cartCategoriesVar);
-    console.log(cartCategories)
+
     return (
         <ListGroup>
             {cartCategories.map(item =>

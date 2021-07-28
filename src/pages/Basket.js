@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useMutation, useReactiveVar} from "@apollo/client";
 import {cartamountPurchasesVar, cartBasketVar, userIsLogin} from "../store/cache";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -13,8 +13,6 @@ const Basket = () => {
     const history = useHistory();
     const listBasket = useReactiveVar(cartBasketVar);
     const user = useReactiveVar(userIsLogin)
-    console.log(user)
-    console.log(listBasket[0])
 
     const initial = 0;
     cartamountPurchasesVar(listBasket.reduce((acc, cur) => {
@@ -27,17 +25,6 @@ const Basket = () => {
     const [updateProduct] = useMutation(UPDATE_PRODUCT);
 
 
-    // const [itemPurchases, setItemPurchases] = useState([]);
-    // const [info, setInfo] = useState([])
-    // let input;
-    // const addInfo = () => {
-    //
-    //         setInfo([{
-    //             title: '',
-    //             description: '',
-    //             number: Date.now()
-    //         }])
-    //     }
     const removeItem = (number) => {
         cartBasketVar([...listBasket].filter(i => i.device.id !== number))
     }
@@ -75,17 +62,6 @@ const Basket = () => {
                                     }
                                 }
                         }
-                    })
-                    console.log({
-                        patch:
-                            {
-                                filter: {
-                                    id: purchas.id
-                                },
-                                set: {
-                                    quantity: quan
-                                }
-                            }
                     })
                 })
                 ;

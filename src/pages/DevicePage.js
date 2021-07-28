@@ -15,7 +15,7 @@ const DevicePage = () => {
     const pursh = {device: device, s:1, id: device.id}
 
     let a = [...cartBasket];
-
+    console.log(device)
 
     function handleClick() {
         (!a.filter(item=> item.id === pursh.id).length>0) ? a.push(pursh): a.push();
@@ -25,8 +25,8 @@ const DevicePage = () => {
     return (
         <Container className='mt-3'>
             <Row>
-                <Col md={4}>
-                    <Image width={300} height={300} src='http://lorempixel.com/300/400/technics'/>
+                <Col md={4} >
+                    <Image width='auto' height={300} src={device.image_src}/>
                 </Col>
                 <Col md={4}>
                     <Row className='d-flex flex-column align-items-center'>

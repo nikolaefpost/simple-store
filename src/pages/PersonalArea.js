@@ -1,15 +1,15 @@
 import React from "react";
-
-import Loading from "../components/Loading";
 import ListGroup from "react-bootstrap/ListGroup";
-import Purchase from "../components/Purchase";
 import PurchaseFull from "../components/PurchaseFull";
+import {useReactiveVar} from "@apollo/client";
+import { userVar} from "../store/cache";
 
 
 const PersonalArea = () => {
+    const user_ = useReactiveVar(userVar)
+    console.log(user_)
     const  user  = JSON.parse (localStorage.getItem ("registeredUser"))
-    const { email, image, phone, user_name, buyTime, purchases } = user;
-    console.log( purchases )
+    const { email, image, phone, user_name,  purchases } = user_;
 
     return (
         <div className="container">
@@ -17,7 +17,7 @@ const PersonalArea = () => {
             <div className="row align-items-center profile-header">
                 <div className="col-md-2 mb-3">
                     <img
-                        src={image+'.jpg'}
+                        src={image+'.jpg'}  width='autu'
                         alt="Profile"
                         className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
                     />
@@ -29,7 +29,7 @@ const PersonalArea = () => {
                 </div>
             </div>
             <h2 className='m-5'>Заказы:</h2>
-            <div className="bg-dark p-3">
+            <div className="bg-secondary p-3 shadow-lg rounded">
                     <ListGroup className=''>
                         {purchases.map(device =>
                             <PurchaseFull key={device.id} device={device.choose_product} quantity={device.quantity}

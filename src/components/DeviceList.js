@@ -7,8 +7,6 @@ import {cartBrandsVar, cartCategoriesVar, cartItemsVar} from "../store/cache";
 const DeviceList =  () => {
 
     const cartItems = useReactiveVar(cartItemsVar);
-    console.log(cartItems)
-
 
     const selectedBrands = useReactiveVar(cartBrandsVar).filter(brand=>brand.isSelected)
     const nameBrands = [];
@@ -23,7 +21,6 @@ const DeviceList =  () => {
     selectedTypes.map(item=>nameTypes.push(item.name));
     let selectedDeviceFull = [];
     for (let i = 0; i < nameTypes.length; i++) {
-        console.log(selectedDevice.flat())
         selectedDeviceFull.push(selectedDevice.flat().length>0
             ? selectedDevice.flat().filter(item=>item.category[0].name === nameTypes[i])
             : cartItems.filter(item=>item.category[0].name === nameTypes[i]))
@@ -46,10 +43,3 @@ const DeviceList =  () => {
 
 export default DeviceList;
 
-// const selectedBrands = useReactiveVar(cartBrandsVar).filter(brand=>brand.isSelected).map(item=>item.name)
-// const nameBrands = [];
-// selectedBrands.map(item=>nameBrands.push(item.name));
-// let selectedDevice = cartItems.filter(item=>selectedBrands.includes(item.brand.name));
-// for (let i = 0; i < nameBrands.length; i++) {
-//     selectedDevice.push(cartItems.filter(item=>item.brand.name === nameBrands[i]))
-// }
