@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 const Shop = () => {
 
     return (<>
-        <Container >
+        <Container style={{marginBottom:250, marginTop: 70}}>
             <Row className='mt-2'>
                 <Col md={3}>
                     <TypeBar/>

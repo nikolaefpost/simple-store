@@ -177,6 +177,28 @@ export const ADD_PURCHASE = gql`
     }
 `;
 
+export const ADD_REVIEW = gql`
+    mutation AddReview($userId: UserRef!, $productId: ProductRef!, $rate: Int!, $buyTime: DateTime!,
+        $comment: String, $dignity: String, $flaws: String, $conclusion: String)
+    {
+        addReview(input: {
+            userId: $userId,
+            productId: $productId,
+            rate: $rate,
+            buyTime: $buyTime,
+            comment: $comment,
+            dignity: $dignity,
+            flaws: $flaws,
+            conclusion: $conclusion
+        }) {
+            numUids
+            review {
+                id
+            }
+        }
+    }
+`;
+
 
 export const ADD_USER = gql`
     mutation AddUser($user_name: String!, $phone: Int!, $email: String!,$role: String!, $image: String)
@@ -255,6 +277,26 @@ export const UPDATE_DONE_PURCHASE = gql`
 //     }
 // }
 //
+
+export const GET_REVIEW_PRODUCT_ID = gql`
+    query MyQuery($filter: ProductFilter) {
+        queryReview {
+            productId(filter: $filter) {
+                id
+            }
+            buyTime
+            comment
+            dignity
+            flaws
+            conclusion
+            id
+            rate
+            userId{
+                user_name
+            }
+        }
+    }
+`;
 
 
 

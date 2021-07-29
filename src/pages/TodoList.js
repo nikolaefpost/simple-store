@@ -10,9 +10,9 @@ const TodoList = () => {
     if (error) return `Error! ${error.message}`;
 
     return (
-        <div className='mx-5 bg-white '>
+        <div className='mx-5 bg-white ' style={{marginTop:100}}>
             <h2>Не обработанные заказы:</h2>
-            <div className='text-light bg-dark p-4 row align-items-center text-center mb-1' >
+            <div className='text-light bg-secondary p-4 row align-items-center text-center mb-1' >
                 <div className='col-2'>название товара</div>
                 <div className='col-1'>id </div>
                 <div className='col-1'>кол-во</div>

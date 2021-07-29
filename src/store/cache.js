@@ -15,14 +15,6 @@ const registeredUser = JSON.parse (localStorage.getItem ("registeredUser"))
 let user =registeredUser? {isAuth: true, name: registeredUser.user_name} : {isAuth: false, name: 'unregistered'}
 export const userIsLogin = makeVar(user);
 
-// export function GetUser(user_name) {
-//     const { loading, error, data } = useQuery(GET_USER, {
-//         variables: { user_name }});
-//     if (loading) return <p>Loading...</p>;
-//     if (error) return <p>Error</p>;
-//     console.log(data)
-//     authNameVar(data)
-// }
 
 export function GetProducts() {
     const { loading, error, data } = useQuery(GET_PRODUCTS);
@@ -64,8 +56,4 @@ export function TypeIsSelected(item) {
     cartCategoriesVar(brands);
 }
 
-// export function AddBrend(brand) {
-//     const [addTodo, { data }] = useMutation(ADD_BRAND);
-//     addTodo({ variables: { type: brand } });
-//     return data;
-// }
+

@@ -44,7 +44,7 @@ const NavBar = () => {
 
 
     return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark" fixed="top">
             <Container>
 
                 <NavLink to={SHOP_ROUTE} style={{color: 'white'}}>Happy Buy</NavLink>

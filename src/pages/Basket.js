@@ -30,7 +30,7 @@ const Basket = () => {
     }
     return (
 
-        <Container className='mt-3'>
+        <Container className='' style={{marginTop:100}}>
             <form onSubmit={e => {
                 e.preventDefault();
                 listBasket.map(purchas => {

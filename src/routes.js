@@ -5,7 +5,7 @@ import {
     DEVICE_ROUTE,
     LOGIN_ROUTE, PERSONAL_ROUTE,
     PROFILE_ROUTE,
-    REGISTRATION_ROUTE,
+    REGISTRATION_ROUTE, REVIEW_ROUTE,
     SHOP_ROUTE, TODO_ROUTE
 } from "./utils/consts";
 import Basket from "./pages/Basket";
@@ -16,6 +16,7 @@ import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
 import PersonalArea from "./pages/PersonalArea";
 import TodoList from "./pages/TodoList";
+import Review from "./pages/Review";
 
 export  const authRoutes = [
     {
@@ -61,5 +62,9 @@ export  const publicRoutes = [
     {
         path: PERSONAL_ROUTE,
         Component: PersonalArea
+    },
+    {
+        path: REVIEW_ROUTE + '/:id/:name',
+        Component: Review
     }
 ]

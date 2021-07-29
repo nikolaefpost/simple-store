@@ -29,7 +29,7 @@ const PersonalArea = () => {
                 </div>
             </div>
             <h2 className='m-5'>Заказы:</h2>
-            <div className="bg-secondary p-3 shadow-lg rounded">
+            <div className="bg-secondary p-3 shadow rounded">
                     <ListGroup className=''>
                         {purchases.map(device =>
                             <PurchaseFull key={device.id} device={device.choose_product} quantity={device.quantity}

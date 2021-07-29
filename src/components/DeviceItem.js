@@ -25,8 +25,7 @@ const DeviceItem = ({device}) => {
                 <div className='text-black-50 d-flex justify-content-between align-items-center mt-1'>
                     <div>{device.brand? device.brand.name: ''}</div>
                     <div className='d-flex align-items-center'>
-                        <div>{device.quantity}</div>
-                        <Image width={18} height={18} src={star}/>
+                        <div>{device.price} ₴</div>
                     </div>
                 </div>
                 <div>{device.name}</div>
