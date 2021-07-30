@@ -9,9 +9,9 @@ import Footer from "./components/Footer";
 
 
 function App() {
-    GetProducts();
-    GetBrands();
-    GetCategory();
+    // GetProducts();
+    // GetBrands();
+    // GetCategory();
     const { isLoading } = useAuth0();
 
     if (isLoading) {

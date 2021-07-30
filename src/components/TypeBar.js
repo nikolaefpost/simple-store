@@ -1,23 +1,23 @@
 import React from 'react';
 import {ListGroup} from "react-bootstrap";
-import {makeVar, useReactiveVar} from "@apollo/client";
-import {cartCategoriesVar, TypeIsSelected} from "../store/cache";
+import {makeVar, useQuery, useReactiveVar} from "@apollo/client";
+import {cartBrandsVar, cartCategoriesVar, TypeIsSelected} from "../store/cache";
+import {GET_CATEGORY} from "../gql/query";
+import TypeBarSortyng from "./TypeBarSortyng";
 export const selectedType = makeVar({isSelect: false});
 
 const TypeBar = () => {
 
-    const cartCategories = useReactiveVar(cartCategoriesVar);
+    const { loading, error, data } = useQuery(GET_CATEGORY);
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error</p>;
+    cartCategoriesVar(data.queryCategory)
+
+
 
     return (
         <ListGroup>
-            {cartCategories.map(item =>
-            <ListGroup.Item style={{cursor: 'pointer'}}
-                active={item.isSelected}
-                onClick={()=> TypeIsSelected({...item, isSelected: !item.isSelected})}
-                key={item.name[0]}>
-                {item.name}
-            </ListGroup.Item>
-            )}
+            <TypeBarSortyng />
         </ListGroup>
     );
 };

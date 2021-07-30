@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 
 const Shop = () => {
 
+
     return (<>
         <Container style={{marginBottom:250, marginTop: 70}}>
             <Row className='mt-2'>

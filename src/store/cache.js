@@ -16,26 +16,20 @@ let user =registeredUser? {isAuth: true, name: registeredUser.user_name} : {isAu
 export const userIsLogin = makeVar(user);
 
 
-export function GetProducts() {
-    const { loading, error, data } = useQuery(GET_PRODUCTS);
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error</p>;
-    cartItemsVar(data.queryProduct)
-}
+// export function GetProducts() {
+//     const { loading, error, data } = useQuery(GET_PRODUCTS);
+//     if (loading) return <p>Loading...</p>;
+//     if (error) return <p>Error</p>;
+//     cartItemsVar(data.queryProduct)
+// }
 
-export function GetBrands() {
-    const { loading, error, data } = useQuery(GET_BRANDS);
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error</p>;
-    cartBrandsVar(data.queryBrand)
-}
+// export function GetBrands() {
+//
+// }
 
-export function GetCategory() {
-    const { loading, error, data } = useQuery(GET_CATEGORY);
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error</p>;
-    cartCategoriesVar(data.queryCategory)
-}
+// export function GetCategory() {
+//
+// }
 
 export function AddBrend(brand) {
     const [addTodo, { data }] = useMutation(ADD_BRAND);

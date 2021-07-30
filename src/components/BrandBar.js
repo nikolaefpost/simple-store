@@ -1,27 +1,22 @@
 
 import {Card,  Row} from "react-bootstrap";
-import { useReactiveVar} from "@apollo/client";
+import {useQuery, useReactiveVar} from "@apollo/client";
 import {cartBrandsVar, BrandIsSelected} from "../store/cache";
 import  React from "react";
+import {GET_BRANDS} from "../gql/query";
+import BrandBarSorting from "./BrandBarSorting";
 
 
 const BrandBar = () => {
 
-    const cartBrands = useReactiveVar(cartBrandsVar);
+    const { loading, error, data } = useQuery(GET_BRANDS);
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error</p>;
+    cartBrandsVar(data.queryBrand)
 
     return (
         <Row className='d-flex'>
-            {cartBrands.map(item=>
-                <Card key={item.name} className='p-3'
-                      style={{cursor: 'pointer'}}
-                      border={item.isSelected ? 'primary' : 'light' }
-                      onClick={()=> {
-                          BrandIsSelected({...item, isSelected: !item.isSelected})
-                      }}
-                >
-                    {item.name}
-                </Card>
-            )}
+            <BrandBarSorting/>
         </Row>
     );
 };
