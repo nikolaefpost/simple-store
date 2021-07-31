@@ -6,9 +6,9 @@ import {useParams} from "react-router-dom";
 
 const Review = () => {
     const {id, name} = useParams()
-    console.log(id, name)
-    const registeredUser = JSON.parse (localStorage.getItem ("registeredUser")).user_name
-    // if (!registeredUser) return (<div>Создавать коментарии могут только зарегистрированные пользователи!</div>)
+    const user = JSON.parse (localStorage.getItem ("registeredUser"))
+    const registeredUser = user? user.user_name : 'unregistered'
+
     let input_star, input_comment, input_dignity, input_flaws, input_conclusion;
     const [addReview, {data}] = useMutation(ADD_REVIEW);
     return (

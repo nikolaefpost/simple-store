@@ -9,12 +9,8 @@ import {useHistory} from "react-router-dom";
 
 
 const Footer = () => {
-
     const history = useHistory();
     const handleClick = ()=> history.push(PERSONAL_ROUTE)
-
-
-    // const handleBarClick = ()=> console.log(navbar)
 
     return (
         <div>

@@ -3,9 +3,6 @@ import {Button,  Form, Modal} from "react-bootstrap";
 import {useMutation} from "@apollo/client";
 import {ADD_BRAND} from "../../gql/query";
 
-// import {useReactiveVar} from "@apollo/client";
-// import {cartBrandsVar} from "../../store/cache";
-
 
 const CreateBrand = ({show, onHide}) => {
     let input;

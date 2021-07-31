@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 const PurchaseFull = (props) => {
     return (
         <div className='text-light bg-secondary p-2 row align-items-center' >

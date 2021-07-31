@@ -1,35 +1,27 @@
 import {makeVar, useMutation, useQuery} from "@apollo/client";
 import {ADD_BRAND, GET_BRANDS, GET_CATEGORY, GET_PRODUCTS} from "../gql/query";
 import React from "react";
+import LoginButton from "../components/Auth0/login-button";
 
 export const userVar = makeVar(false);
 export const isAdminVar = makeVar(false);
 export const authNameVar = makeVar([]);
+export const authPwdVar = makeVar([]);
 export const cartItemsVar = makeVar([]);
 export const cartBrandsVar = makeVar([]);
 export const cartCategoriesVar = makeVar([]);
 export const cartBasketVar = makeVar([]);
 export const cartamountPurchasesVar = makeVar([]);
 
+
+export const SearchListVar = makeVar(null);
+
 const registeredUser = JSON.parse (localStorage.getItem ("registeredUser"))
-let user =registeredUser? {isAuth: true, name: registeredUser.user_name} : {isAuth: false, name: 'unregistered'}
+const pwd = localStorage.getItem ("registeredPwd")
+console.log(pwd)
+let user =registeredUser? {isAuth: true, name: registeredUser.user_name, pwd: pwd} : {isAuth: false, name: 'unregistered', pwd: ''}
 export const userIsLogin = makeVar(user);
 
-
-// export function GetProducts() {
-//     const { loading, error, data } = useQuery(GET_PRODUCTS);
-//     if (loading) return <p>Loading...</p>;
-//     if (error) return <p>Error</p>;
-//     cartItemsVar(data.queryProduct)
-// }
-
-// export function GetBrands() {
-//
-// }
-
-// export function GetCategory() {
-//
-// }
 
 export function AddBrend(brand) {
     const [addTodo, { data }] = useMutation(ADD_BRAND);
@@ -42,7 +34,6 @@ export function BrandIsSelected(item) {
     brands.unshift(item);
     cartBrandsVar(brands);
 }
-
 
 export function TypeIsSelected(item) {
     const brands = cartCategoriesVar().filter(type=>type.name !==item.name)

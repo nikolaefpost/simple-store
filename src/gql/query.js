@@ -1,24 +1,28 @@
 import {gql} from '@apollo/client';
 
 export const GET_USER = gql`
-    query GetUser($user_name: String!) {
-        getUser(user_name: $user_name) {
+    query GetUser($user_name: String!, $pwd: String = "") {
+        checkUserPassword(pwd: $pwd, user_name: $user_name) {
             email
+            image
             phone
             role
             user_name
-            image
             purchases {
-                quantity
+                address
                 buyTime
                 done
+                first_name
+                id
+                note
+                phone
+                quantity
+                surname
                 choose_product {
                     image_src
                     name
                     price
-                    id
                 }
-                id
             }
         }
     }
@@ -52,6 +56,35 @@ export const GET_PRODUCTS = gql`
     }
 
 `;
+
+export const GET_PRODUCTS_SEARCH = gql`
+    query MyQuery($filter: ProductFilter) {
+        queryProduct(filter: $filter) {
+            id
+            image_src
+            name
+            price
+            quantity
+            specification {
+                description
+                title
+                id
+            }
+            brand {
+                isSelected
+                name
+            }
+            category {
+                isSelected
+                name
+            }
+            description_shot
+            description_long
+        }
+    }
+`;
+
+
 
 export const GET_BRANDS = gql`
     query MyQuery {
@@ -201,14 +234,15 @@ export const ADD_REVIEW = gql`
 
 
 export const ADD_USER = gql`
-    mutation AddUser($user_name: String!, $phone: Int!, $email: String!,$role: String!, $image: String)
+    mutation AddUser($user_name: String!, $phone: Int!, $email: String!,$role: String!, $image: String, $pwd: String = "")
     {
         addUser(input: {
             user_name: $user_name,
             phone: $phone,
             email: $email,
             role: $role,
-            image: $image
+            image: $image,
+            pwd: $pwd
         }) {
             numUids
             user {

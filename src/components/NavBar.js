@@ -2,15 +2,7 @@ import React from 'react';
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import {NavLink} from "react-router-dom";
-import { Form,  FormControl} from 'react-bootstrap';
-import {
-    ADMIN_ROUTE,
-    AUTH_ROUTE,
-    BASKET_ROUTE,
-    LOGIN_ROUTE,
-    PERSONAL_ROUTE,
-    SHOP_ROUTE, TODO_ROUTE
-} from "../utils/consts";
+import {ADMIN_ROUTE, AUTH_ROUTE, LOGIN_ROUTE, PERSONAL_ROUTE, SHOP_ROUTE, TODO_ROUTE} from "../utils/consts";
 import Button from "react-bootstrap/Button";
 
 import Container from "react-bootstrap/Container";
@@ -23,9 +15,17 @@ import Icons from "./Icons";
 import Search from "./Search";
 
 
-
+const useImperativeQuery = (query) => {
+    const { refetch } = useQuery(query, { skip: true });
+    const imperativelyCallQuery = (variables) => {
+        return refetch(variables);
+    };
+    return imperativelyCallQuery;
+};
 
 const NavBar = () => {
+
+
 
     const history = useHistory();
     const user = useReactiveVar(userIsLogin)
@@ -33,13 +33,16 @@ const NavBar = () => {
     const handleClick = ()=> history.push(PERSONAL_ROUTE)
 
     const { loading, error, data } = useQuery(GET_USER, {
-        variables: { "user_name": user.name }});
+        variables: { user_name: user.name, pwd: user.pwd }});
     if (loading) return <p>Loading...</p>;
     if (error) console.log(error);
-    if (data && data.getUser){
-        isAdminVar( data.getUser.role==='admin' ? true: false)
-        localStorage.setItem ("registeredUser", JSON.stringify(data.getUser));
-        userVar(data.getUser)
+    console.log(data)
+    if (data && data.checkUserPassword){
+
+        isAdminVar( data.checkUserPassword.role==='admin' ? true: false)
+        localStorage.setItem ("registeredUser", JSON.stringify(data.checkUserPassword));
+        localStorage.setItem ("registeredPwd", user.pwd);
+        userVar(data.checkUserPassword)
     }
 
 
@@ -78,7 +81,7 @@ const NavBar = () => {
                         <NavLink to={LOGIN_ROUTE} style={{color: 'white'}} className='mr-4 align-self-center'
                                  onClick={() => {
                                      history.push(LOGIN_ROUTE)
-                                     userIsLogin({isAuth: false, name: 'unregistered'})
+                                     userIsLogin({isAuth: false, name: 'unregistered', pwd: ''})
                                      localStorage.setItem ("registeredUser", null);
                                      isAdminVar(false);
                                  }}
@@ -101,7 +104,7 @@ const NavBar = () => {
                     </Nav>
                 }
 
-                {user.isAuth && <UserAvatar user={data.getUser} onClick={handleClick}/>}
+                {user.isAuth && <UserAvatar user={data.checkUserPassword} onClick={handleClick}/>}
 
                 {/*<Button variant={'outline-light'}*/}
                 {/*        onClick={() => {*/}

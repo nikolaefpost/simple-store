@@ -8,10 +8,7 @@ import {REVIEW_ROUTE} from "../utils/consts";
 import {GET_REVIEW_PRODUCT_ID} from "../gql/query";
 import ReviewItems from "../components/ReviewItems";
 
-
 const DevicePage = () => {
-
-
 
     const history = useHistory();
     const {id} = useParams()
@@ -20,7 +17,7 @@ const DevicePage = () => {
     const device = cartItems.filter(item => item.id === id)[0]
     const pursh = {device: device, s:1, id: device.id}
 
-    let a = [...cartBasket];
+    let purscList = [...cartBasket];
 
     const { loading, error, data } = useQuery(GET_REVIEW_PRODUCT_ID, {
         variables: {filter: {id: id}}});
@@ -37,8 +34,8 @@ const DevicePage = () => {
 
 
     function handleClick() {
-        (!a.filter(item=> item.id === pursh.id).length>0) ? a.push(pursh): a.push();
-        cartBasketVar(a)
+        (!purscList.filter(item=> item.id === pursh.id).length>0) ? purscList.push(pursh): purscList.push();
+        cartBasketVar(purscList)
     }
 
     return (

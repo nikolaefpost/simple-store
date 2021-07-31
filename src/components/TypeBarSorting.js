@@ -1,9 +1,9 @@
 import React from 'react';
 import {ListGroup} from "react-bootstrap";
-import {cartBrandsVar, cartCategoriesVar, TypeIsSelected} from "../store/cache";
+import { cartCategoriesVar, TypeIsSelected} from "../store/cache";
 import {useReactiveVar} from "@apollo/client";
 
-const TypeBarSortyng = () => {
+const TypeBarSorting = () => {
     const cartCategories = useReactiveVar(cartCategoriesVar);
     return (
         <>
@@ -19,4 +19,4 @@ const TypeBarSortyng = () => {
     );
 };
 
-export default TypeBarSortyng;
+export default TypeBarSorting;

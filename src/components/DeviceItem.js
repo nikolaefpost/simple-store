@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, Card, Col, Image} from "react-bootstrap";
-import star from '../assets/star.png'
 import {useHistory} from 'react-router-dom'
 import {DEVICE_ROUTE} from "../utils/consts";
 import {useMutation, useReactiveVar} from "@apollo/client";

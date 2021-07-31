@@ -2,22 +2,17 @@ import React from 'react';
 import {Container, Form, Button, Row} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useHistory, useLocation} from "react-router-dom";
-import { LOGIN_ROUTE, SHOP_ROUTE} from "../utils/consts";
-import {useMutation, useReactiveVar} from "@apollo/client";
+import { SHOP_ROUTE} from "../utils/consts";
+import {useMutation} from "@apollo/client";
 import { ADD_USER} from "../gql/query";
 import {userIsLogin} from "../store/cache";
 
 
 const Registration = () => {
     const history = useHistory();
-    // const user = useReactiveVar(userIsLogin)
-    let input_name, input_phone, input_email;
+    let input_name, input_phone, input_email, input_pwd, input_img;
 
     const [addUser, {data}] = useMutation(ADD_USER);
-
-
-    const location = useLocation()
-    const isLogin = location.pathname === LOGIN_ROUTE;
 
     return (
         <Container className='d-flex justify-content-center align-items-center'
@@ -29,20 +24,30 @@ const Registration = () => {
                     e.preventDefault();
                     addUser({ variables: {
                             user_name: input_name.value,
+                            pwd: input_pwd.value,
                             phone: Number(input_phone.value),
                             email: input_email.value,
-                            image: null,
+                            image: input_img.value,
                             role: 'buyer'
 
                     } });
-                    const q = input_name.value;
-                    setTimeout(()=>userIsLogin({ isAuth: true, name: q}), 2000)
+                    const n = input_name.value;
+                    const p = input_pwd.value;
+                    setTimeout(()=>userIsLogin({ isAuth: true, name: n, pwd: p}), 2000)
 
                     history.push(SHOP_ROUTE)
                 }}>
                     <Form.Control
                         className='mt-2' placeholder='Введите ваш логин...'
                         ref={node => {input_name = node;}}
+                    />
+                    <Form.Control
+                        className='mt-2' placeholder='Введите ваш пароль...'
+                        ref={node => {input_pwd = node;}} type="password"
+                    />
+                    <Form.Control
+                        className='mt-2' placeholder='Введите ваш image...'
+                        ref={node => {input_img = node;}}
                     />
                     <Form.Control
                         className='mt-2' placeholder='Введите ваш email...'

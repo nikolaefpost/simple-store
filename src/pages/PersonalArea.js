@@ -6,10 +6,8 @@ import { userVar} from "../store/cache";
 
 
 const PersonalArea = () => {
-    const user_ = useReactiveVar(userVar)
-    console.log(user_)
-    const  user  = JSON.parse (localStorage.getItem ("registeredUser"))
-    const { email, image, phone, user_name,  purchases } = user_;
+
+    const { email, image, phone, user_name,  purchases } = useReactiveVar(userVar);
 
     return (
         <div className="container">

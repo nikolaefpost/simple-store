@@ -11,8 +11,7 @@ const CreateDevice = ({show, onHide}) => {
         input_shot, input_long;
     const [addTodo, {data}] = useMutation(ADD_PRODUCT);
     const [info, setInfo] = useState([])
-    // const cartBrands = useReactiveVar(cartBrandsVar);
-    // const cartCategories = useReactiveVar(cartCategoriesVar);
+;
 
     const addInfo = () => {
         if(input_title&&input_description) {

@@ -1,21 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Container, Form, Button, Row} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import {NavLink, useHistory, useLocation} from "react-router-dom";
-import {DEVICE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from "../utils/consts";
-import {useMutation, useQuery, useReactiveVar} from "@apollo/client";
-import {ADD_USER, GET_USER} from "../gql/query";
+import { useHistory} from "react-router-dom";
+import { SHOP_ROUTE} from "../utils/consts";
+import { useReactiveVar} from "@apollo/client";
 import {userIsLogin, authNameVar} from "../store/cache";
 
 const isAuth = false;
 const Auth = () => {
     const history = useHistory();
     const user = useReactiveVar(userIsLogin)
-    let input_name;
-    // const [user_name, setUser_name] = useState('');
-
-    // const location = useLocation()
-    // const isLogin = location.pathname === LOGIN_ROUTE;
+    let input_name, input_pwd;
 
     return (
         <Container className='d-flex justify-content-center align-items-center'
@@ -28,12 +23,17 @@ const Auth = () => {
                     authNameVar(input_name.value)
 
 
-                    userIsLogin({...user, isAuth: true, name: input_name.value})
+
+                    userIsLogin({...user, isAuth: true, name: input_name.value, pwd: input_pwd.value})
                     history.push(SHOP_ROUTE)
                 }}>
                     <Form.Control
                         className='mt-2' placeholder='Введите ваш логин...'
                         ref={node => {input_name = node;}}
+                    />
+                    <Form.Control
+                        className='mt-2' placeholder='Введите ваш пароль...' type="password"
+                        ref={node => {input_pwd = node;}}
                     />
                     <Row className='d-flex justify-content-between align-items-center mt-3 px-3'>
 

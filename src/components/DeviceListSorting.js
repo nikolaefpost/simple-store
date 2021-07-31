@@ -1,14 +1,11 @@
 import React, {useState} from 'react';
 import DeviceItem from "./DeviceItem";
 import {useReactiveVar} from "@apollo/client";
-import {cartBrandsVar, cartCategoriesVar} from "../store/cache";
+import {cartBrandsVar, cartCategoriesVar, SearchListVar} from "../store/cache";
 
 const DeviceListSorting = (props) => {
 
     const [state, setState] = useState(props.queryProduct);
-    console.log(state)
-
-    // const cartItems = useReactiveVar(cartItemsVar);
 
     const selectedBrands = useReactiveVar(cartBrandsVar).filter(brand=>brand.isSelected)
     const nameBrands = [];
