@@ -1,7 +1,7 @@
 
-import {Card,  Row} from "react-bootstrap";
-import {useQuery, useReactiveVar} from "@apollo/client";
-import {cartBrandsVar, BrandIsSelected} from "../store/cache";
+import { Row} from "react-bootstrap";
+import {useQuery} from "@apollo/client";
+import {cartBrandsVar} from "../store/cache";
 import  React from "react";
 import {GET_BRANDS} from "../gql/query";
 import BrandBarSorting from "./BrandBarSorting";

@@ -1,19 +1,8 @@
 
-
 import React from "react";
 import Image from "react-bootstrap/Image";
 import account_avatar from '../assets/account_avatar.png'
 
-
-
-// import { useAuth0 } from "@auth0/auth0-react";
-
-// const useImperativeQuery = (query) => {
-//     const { refetch } = useQuery(query, { skip: true });
-//     const imperativelyCallQuery = (variables) => {
-//         return refetch(variables);
-//     };
-//     return imperativelyCallQuery;
 
 const UserAvatar = (props) => {
 

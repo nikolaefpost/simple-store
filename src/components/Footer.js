@@ -32,7 +32,7 @@ const Footer = () => {
                             </NavDropdown>
                         </Nav>
 
-                            <img src='gadget.png' width={200} className='mx-4'/>
+                            <img src='gadget.png' alt='gadget' width={200} className='mx-4'/>
 
                         <Nav>
                             <Nav.Link onClick={handleClick}>ЛИЧНЫЙ КАБИНЕТ</Nav.Link>

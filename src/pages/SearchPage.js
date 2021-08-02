@@ -6,7 +6,6 @@ import DeviceListSorting from "../components/DeviceListSorting";
 import {Col, Container, Row} from "react-bootstrap";
 import TypeBar from "../components/TypeBar";
 import BrandBar from "../components/BrandBar";
-import DeviceList from "../components/DeviceList";
 import Footer from "../components/Footer";
 
 const SearchPage = () => {

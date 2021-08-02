@@ -20,7 +20,7 @@ const Purchase = ({device, handleClick}) => {
                 setValue(event.target.value);
                 console.log(listBasket)
                 listBasket.map(u=>{
-                    if (u.device.id===device.device.id) u.s=Number(event.target.value)
+                    if (u.device.id===device.device.id)  u.s=Number(event.target.value)
                 })
                 cartBasketVar(listBasket)
                 const initialValue = 0;

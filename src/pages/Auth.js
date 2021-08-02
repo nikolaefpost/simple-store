@@ -6,7 +6,7 @@ import { SHOP_ROUTE} from "../utils/consts";
 import { useReactiveVar} from "@apollo/client";
 import {userIsLogin, authNameVar} from "../store/cache";
 
-const isAuth = false;
+
 const Auth = () => {
     const history = useHistory();
     const user = useReactiveVar(userIsLogin)

@@ -1,7 +1,7 @@
 import React from 'react';
 import {ListGroup} from "react-bootstrap";
 import { useQuery} from "@apollo/client";
-import { cartCategoriesVar, TypeIsSelected} from "../store/cache";
+import { cartCategoriesVar} from "../store/cache";
 import {GET_CATEGORY} from "../gql/query";
 import TypeBarSorting from "./TypeBarSorting";
 

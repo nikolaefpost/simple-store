@@ -4,7 +4,6 @@ import Navbar from "react-bootstrap/Navbar";
 import {NavLink} from "react-router-dom";
 import {ADMIN_ROUTE, AUTH_ROUTE, LOGIN_ROUTE, PERSONAL_ROUTE, SHOP_ROUTE, TODO_ROUTE} from "../utils/consts";
 import Button from "react-bootstrap/Button";
-
 import Container from "react-bootstrap/Container";
 import {useHistory} from 'react-router-dom'
 import {useQuery, useReactiveVar} from '@apollo/client';
@@ -15,13 +14,13 @@ import Icons from "./Icons";
 import Search from "./Search";
 
 
-const useImperativeQuery = (query) => {
-    const { refetch } = useQuery(query, { skip: true });
-    const imperativelyCallQuery = (variables) => {
-        return refetch(variables);
-    };
-    return imperativelyCallQuery;
-};
+// const useImperativeQuery = (query) => {
+//     const { refetch } = useQuery(query, { skip: true });
+//     const imperativelyCallQuery = (variables) => {
+//         return refetch(variables);
+//     };
+//     return imperativelyCallQuery;
+// };
 
 const NavBar = () => {
 

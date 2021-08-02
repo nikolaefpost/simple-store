@@ -1,6 +1,6 @@
 import React from 'react';
-import {Card, Row} from "react-bootstrap";
-import {BrandIsSelected, cartBrandsVar, cartCategoriesVar} from "../store/cache";
+import {Card} from "react-bootstrap";
+import {BrandIsSelected, cartBrandsVar} from "../store/cache";
 import {useReactiveVar} from "@apollo/client";
 
 const BrandBarSorting = () => {

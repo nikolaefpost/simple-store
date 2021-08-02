@@ -1,16 +1,18 @@
 import React from 'react';
 import {Container, Form, Button, Row} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { useHistory, useLocation} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import { SHOP_ROUTE} from "../utils/consts";
 import {useMutation} from "@apollo/client";
 import { ADD_USER} from "../gql/query";
 import {userIsLogin} from "../store/cache";
 
 
+
 const Registration = () => {
     const history = useHistory();
     let input_name, input_phone, input_email, input_pwd, input_img;
+
 
     const [addUser, {data}] = useMutation(ADD_USER);
 
