@@ -8,6 +8,7 @@ import { userVar} from "../store/cache";
 const PersonalArea = () => {
 
     const { email, image, phone, user_name,  purchases } = useReactiveVar(userVar);
+    if(!user_name) return <div> Вы не являетесь зарегестрированным пользователем!</div>
 
     return (
         <div className="container">

@@ -1,21 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import {PERSONAL_ROUTE} from "../utils/consts";
 import {useHistory} from "react-router-dom";
+import style from "./css/footer.css"
 
 
 
 const Footer = () => {
+    const [height, setHeight] = useState(100);
     const history = useHistory();
     const handleClick = ()=> history.push(PERSONAL_ROUTE)
+    function handleOver() {
+        setHeight(150)
+    }
+    function handleOut() {
+        setHeight(100)
+    }
 
     return (
         <div>
-            <Navbar  collapseOnSelect  expand="lg" bg="dark" variant="dark" fixed="bottom" style={{height:180}} >
-                <Container style={{alignSelf: 'start'}} >
+            <Navbar  collapseOnSelect onMouseOver={handleOver}  onMouseOut={handleOut}  exterpand="lg" bg="dark" variant="dark" fixed="bottom" style={{height: height}} >
+                <Container className={style.footer} style={{alignSelf: 'start'}} >
                     <Navbar.Brand href="#home">Happy Buy</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
@@ -32,7 +40,7 @@ const Footer = () => {
                             </NavDropdown>
                         </Nav>
 
-                            <img src='gadget.png' alt='gadget' width={200} className='mx-4'/>
+                            <img src='gadget.png' alt='gadget' width={150} className='mx-4'/>
 
                         <Nav>
                             <Nav.Link onClick={handleClick}>ЛИЧНЫЙ КАБИНЕТ</Nav.Link>

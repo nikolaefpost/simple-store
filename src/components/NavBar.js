@@ -83,6 +83,7 @@ const NavBar = () => {
                                      userIsLogin({isAuth: false, name: 'unregistered', pwd: ''})
                                      localStorage.setItem ("registeredUser", null);
                                      isAdminVar(false);
+                                     userVar(null)
                                  }}
                         >Выйти</NavLink>
 

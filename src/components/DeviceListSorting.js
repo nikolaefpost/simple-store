@@ -56,9 +56,9 @@ const DeviceListSorting = (props) => {
         <>
             <form className='d-flex justify-content-end'>
                 <select className='p-2' variant="dark" onChange={handleChange}>
-                    <option value="priceUp">от дешевых к дорогим</option>
+                    <option value="default">по релевантности</option>
                     <option value="priceDoun">от дорогих к дешевым</option>
-                    <option selected value="default">по релевантности</option>
+                    <option  value="priceUp">от дешевых к дорогим</option>
                 </select>
             </form>
 
