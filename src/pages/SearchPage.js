@@ -24,11 +24,7 @@ const SearchPage = () => {
                     <Col md={9}>
                         <BrandBar/>
                         <h3>Товары по запросу: {SearchList}</h3>
-                        <Row>
-                            <DeviceListSorting queryProduct={data.queryProduct}/>
-                        </Row>
-
-
+                        <DeviceListSorting queryProduct={data.queryProduct}/>
                     </Col>
                 </Row>
             </Container>

@@ -16,7 +16,7 @@ const Shop = () => {
             <Row className='mt-2'>
                 <Col md={3}>
                     <TypeBar/>
-                    <Chat/>
+                    {/*<Chat/>*/}
                 </Col>
                 <Col md={9}>
                     <BrandBar/>

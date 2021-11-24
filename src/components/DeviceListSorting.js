@@ -5,9 +5,9 @@ import {cartBrandsVar, cartCategoriesVar} from "../store/cache";
 import Button from "react-bootstrap/Button";
 import {Row} from "react-bootstrap";
 
-const DeviceListSorting = (props) => {
+const DeviceListSorting = ({queryProduct}) => {
 
-    const [state, setState] = useState(props.queryProduct);
+    const [state, setState] = useState(queryProduct);
     // const [sort, setSort] = useState('');
     console.log(state)
 
@@ -42,30 +42,30 @@ const DeviceListSorting = (props) => {
             if (a.price > b.price) return -1;
             return 0;
         }))}
-        else {setState(props.queryProduct)}
+        else {setState(queryProduct)}
 
         // setState( state.sort());
     }
 
     let list=[];
-    if(nameBrands.length>0&&!nameTypes.length>0) list = selectedDevice.flat();
+    if(nameBrands.length>0 && !nameTypes.length>0) list = selectedDevice.flat();
     else if(nameTypes.length>0) list = selectedDeviceFull.flat();
     else list = state;
     return (
 
         <>
-            <form className='d-flex justify-content-end'>
-                <select className='p-2' variant="dark" onChange={handleChange}>
-                    <option value="default">по релевантности</option>
-                    <option value="priceDoun">от дорогих к дешевым</option>
-                    <option  value="priceUp">от дешевых к дорогим</option>
-                </select>
-            </form>
-
+            <Row className='d-flex justify-content-end'>
+                <form className='d-flex'>
+                    <select className='p-2' variant="dark" onChange={handleChange}>
+                        <option value="default">по релевантности</option>
+                        <option value="priceDoun">от дорогих к дешевым</option>
+                        <option  value="priceUp">от дешевых к дорогим</option>
+                    </select>
+                </form>
+            </Row>
             <Row className='d-flex'>
             {list.map(device=>
                 <DeviceItem key={device.id} device={device}/>
-
             )}
             </Row>
         </>

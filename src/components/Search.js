@@ -21,7 +21,7 @@ const Search = () => {
               }}>
             <FormControl
                 type="search"
-                placeholder="все найдется!"
+                placeholder="найдется все!"
                 className="ml-5"
                 aria-label="Search"
                 ref={node => {input_search = node;}}

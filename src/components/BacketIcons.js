@@ -3,7 +3,7 @@ import { Cart3} from 'react-bootstrap-icons';
 import {BASKET_ROUTE} from "../utils/consts";
 import {useHistory} from 'react-router-dom'
 
-const Icons = () => {
+const BacketIcons = () => {
     const history = useHistory();
     return <Cart3 color="Gainsboro" size={32} className='ml-5'
                   style={{cursor: 'pointer'}}       onClick={() => {
@@ -11,4 +11,4 @@ const Icons = () => {
     }}/>;
 };
 
-export default Icons;
+export default BacketIcons;

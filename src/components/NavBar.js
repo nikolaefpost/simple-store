@@ -10,7 +10,7 @@ import {useQuery, useReactiveVar} from '@apollo/client';
 import {isAdminVar, userIsLogin, userVar} from "../store/cache";
 import UserAvatar from "./UserAvatar";
 import {GET_USER} from "../gql/query";
-import Icons from "./Icons";
+import BacketIcons from "./BacketIcons";
 import Search from "./Search";
 
 
@@ -35,10 +35,10 @@ const NavBar = () => {
         variables: { user_name: user.name, pwd: user.pwd }});
     if (loading) return <p>Loading...</p>;
     if (error) console.log(error);
-    console.log(data)
-    if (data && data.checkUserPassword){
 
-        isAdminVar( data.checkUserPassword.role==='admin' ? true: false)
+    if (data && data.checkUserPassword){
+        console.log(data)
+        isAdminVar( data.checkUserPassword.role === 'admin' ? true: false)
         localStorage.setItem ("registeredUser", JSON.stringify(data.checkUserPassword));
         localStorage.setItem ("registeredPwd", user.pwd);
         userVar(data.checkUserPassword)
@@ -50,7 +50,7 @@ const NavBar = () => {
             <Container>
 
                 <NavLink to={SHOP_ROUTE} style={{color: 'white'}}>Happy Buy</NavLink>
-                <Icons />
+                <BacketIcons />
                 <Search/>
 
                 {user.isAuth ?
@@ -59,7 +59,6 @@ const NavBar = () => {
                         <div>
                             <Button variant={'outline-light'}
                                     onClick={() => {
-
                                         history.push(ADMIN_ROUTE)
                                     }}
                                     className='ml-2'>
