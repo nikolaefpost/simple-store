@@ -9,10 +9,10 @@ import ProtectedRoute from "../auth/protected-route";
 
 const AppRouter = () => {
 
-    const user = useReactiveVar(userIsLogin)
+    const isAuth = useReactiveVar(userIsLogin)
     return (
         <Switch>
-            {user.isAuth && authRoutes.map(({path, Component})=>
+            {isAuth && authRoutes.map(({path, Component})=>
             <Route key={path} path={path} component={Component} exact />
             )}
             {publicRoutes.map(({path, Component})=>

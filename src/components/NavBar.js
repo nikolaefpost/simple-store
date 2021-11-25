@@ -1,8 +1,8 @@
 import React from 'react';
-import { PERSONAL_ROUTE} from "../utils/consts";
+import {AUTH_ROUTE, LOGIN_ROUTE, PERSONAL_ROUTE} from "../utils/consts";
 import {useHistory} from 'react-router-dom'
 import {useQuery, useReactiveVar} from '@apollo/client';
-import {authNameVar, isAdminVar, userIsLogin, userVar} from "../store/cache";
+import {authNameVar, errorVar, isAdminVar, userIsLogin, userVar} from "../store/cache";
 import {GET_USER} from "../gql/query";
 import NabarView from "./NabarView";
 
@@ -28,16 +28,19 @@ const NavBar = () => {
     if (error) console.log(error);
 
     if (data && data.checkUserPassword){
-        console.log(data.checkUserPassword)
         isAdminVar( data.checkUserPassword.role === 'admin' ? true: false)
         localStorage.setItem ("registeredUser", JSON.stringify(data.checkUserPassword));
         localStorage.setItem ("registeredPwd", authUser.pwd);
-        userIsLogin({isAuth: true, name: authUser.name, pwd: authUser.pwd})
         userVar(data.checkUserPassword)
     }
     if(data?.checkUserPassword && data.checkUserPassword.user_name === authUser.name) {
-        userIsLogin({isAuth: true, name: authUser.name, pwd: authUser.pwd})
+        userIsLogin(true)
     }
+    // else {
+    //     errorVar(true)
+    //     history.push(AUTH_ROUTE)
+    // }
+
 
 
     return (

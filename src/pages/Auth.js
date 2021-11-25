@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Container, Form, Button, Row} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useHistory} from "react-router-dom";
 import { SHOP_ROUTE} from "../utils/consts";
 import { useReactiveVar} from "@apollo/client";
-import {userIsLogin, authNameVar} from "../store/cache";
+import {authNameVar, errorVar, userIsLogin} from "../store/cache";
 
 
 const Auth = () => {
     const history = useHistory();
-    const user = useReactiveVar(userIsLogin)
     let input_name, input_pwd;
-
+    // const [error, setError] = useState(false)
+    const isAuth = useReactiveVar(userIsLogin)
+    if (isAuth) history.push(SHOP_ROUTE)
+    const error = useReactiveVar(errorVar)
 
     return (
         <Container className='d-flex justify-content-center align-items-center'
@@ -23,10 +25,6 @@ const Auth = () => {
                     e.preventDefault();
                     authNameVar({name: input_name.value, pwd: input_pwd.value})
 
-
-
-                    // userIsLogin({...user, isAuth: false, name: input_name.value, pwd: input_pwd.value})
-                    history.push(SHOP_ROUTE)
                 }}>
                     <Form.Control
                         className='mt-2' placeholder='Введите ваш логин...'
@@ -44,6 +42,7 @@ const Auth = () => {
                     </Row>
 
                 </Form>
+                {error && <div>Такого логина нет</div>}
             </Card>
 
 

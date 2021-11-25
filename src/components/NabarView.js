@@ -13,7 +13,7 @@ import { useReactiveVar} from '@apollo/client';
 
 const NabarView = ({isAdmin, data, goToPersonalPage}) => {
     const history = useHistory();
-    const user = useReactiveVar(userIsLogin)
+    const isAuth = useReactiveVar(userIsLogin)
     return (
         <>
             <Navbar bg="dark" variant="dark" fixed="top">
@@ -23,7 +23,7 @@ const NabarView = ({isAdmin, data, goToPersonalPage}) => {
                     <BacketIcons />
                     <Search/>
 
-                    {user.isAuth ?
+                    {isAuth ?
                         <Nav className="ml-auto" style={{color: 'white'}}>
                             {isAdmin &&
                             <div>
@@ -48,7 +48,7 @@ const NabarView = ({isAdmin, data, goToPersonalPage}) => {
                             <NavLink to={LOGIN_ROUTE} style={{color: 'white'}} className='mr-4 align-self-center'
                                      onClick={() => {
                                          history.push(LOGIN_ROUTE)
-                                         userIsLogin({isAuth: false, name: 'unregistered', pwd: ''})
+                                         userIsLogin(false)
                                          localStorage.setItem ("registeredUser", null);
                                          isAdminVar(false);
                                          userVar(null)
@@ -71,7 +71,7 @@ const NabarView = ({isAdmin, data, goToPersonalPage}) => {
                             </Button>
                         </Nav>
                     }
-                    {user.isAuth && <UserAvatar user={data.checkUserPassword} onClick={goToPersonalPage}/>}
+                    {isAuth && <UserAvatar user={data.checkUserPassword} onClick={goToPersonalPage}/>}
 
                     {/*<Button variant={'outline-light'}*/}
                     {/*        onClick={() => {*/}

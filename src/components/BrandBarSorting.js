@@ -5,6 +5,7 @@ import {useReactiveVar} from "@apollo/client";
 
 const BrandBarSorting = () => {
     const cartBrands = useReactiveVar(cartBrandsVar);
+    console.log(cartBrands)
     return (
         <>
             {cartBrands.map(item=>
@@ -12,7 +13,7 @@ const BrandBarSorting = () => {
                       style={{cursor: 'pointer'}}
                       border={item.isSelected ? 'primary' : 'light' }
                       onClick={()=> {
-                          BrandIsSelected({...item, isSelected: !item.isSelected})
+                          BrandIsSelected(item.name)
                       }}
                 >
                     {item.name}

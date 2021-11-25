@@ -50,7 +50,7 @@ const Registration = () => {
     const n = input_name.value;
     const p = input_pwd.value;
     setTimeout(()=> {
-        userIsLogin({isAuth: true, name: n, pwd: p})
+        userIsLogin(true)
         authNameVar({name: n, pwd: p})
     }, 2000)
 

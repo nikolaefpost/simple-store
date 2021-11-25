@@ -10,7 +10,7 @@ const TypeBarSorting = () => {
             {cartCategories.map(item =>
                 <ListGroup.Item style={{cursor: 'pointer'}}
                                 active={item.isSelected}
-                                onClick={()=> TypeIsSelected({...item, isSelected: !item.isSelected})}
+                                onClick={()=> TypeIsSelected(item.name)}
                                 key={item.name[0]}>
                     {item.name}
                 </ListGroup.Item>
