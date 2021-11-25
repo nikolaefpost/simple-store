@@ -16,7 +16,18 @@ const Review = () => {
             <h2 className='text-center'>{name}</h2>
             <Form onSubmit={e => {
                 e.preventDefault();
-                console.log(input_star.value)
+                console.log({
+                    variables: {
+                        userId: {user_name: registeredUser},
+                        productId: {id: id},
+                        rate: Number(input_star.value),
+                        buyTime: new Date(),
+                        comment: input_comment.value,
+                        dignity: input_dignity.value,
+                        flaws: input_flaws.value,
+                        conclusion: input_conclusion.value
+                    }
+                })
                 addReview({
                     variables: {
                         userId: {user_name: registeredUser},

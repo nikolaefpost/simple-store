@@ -20,13 +20,17 @@ const DevicePage = () => {
     let purscList = [...cartBasket];
 
     const { loading, error, data } = useQuery(GET_REVIEW_PRODUCT_ID, {
-        variables: {filter: {id: id}}});
+        variables: {
+            filter: {id: id}
+        }
+    });
     if (loading) return <p>Loading...</p>;
     if (error) console.log(error);
 
     let rate = 5;
     let reviews = null;
     if (data){
+        console.log('reviews', data)
         reviews = data.queryReview;
         const init = 0;
         rate = Math.round(reviews.reduce((acc, curr)=>acc+curr.rate, init)/reviews.length*10)/10;

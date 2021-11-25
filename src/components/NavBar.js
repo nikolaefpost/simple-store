@@ -29,7 +29,7 @@ const NavBar = () => {
     const history = useHistory();
     const user = useReactiveVar(userIsLogin)
     const isAdmin = useReactiveVar(isAdminVar)
-    const handleClick = ()=> history.push(PERSONAL_ROUTE)
+    const goToPersonalPage = ()=> history.push(PERSONAL_ROUTE)
 
     const { loading, error, data } = useQuery(GET_USER, {
         variables: { user_name: user.name, pwd: user.pwd }});
@@ -103,7 +103,7 @@ const NavBar = () => {
                     </Nav>
                 }
 
-                {user.isAuth && <UserAvatar user={data.checkUserPassword} onClick={handleClick}/>}
+                {user.isAuth && <UserAvatar user={data.checkUserPassword} onClick={goToPersonalPage}/>}
 
                 {/*<Button variant={'outline-light'}*/}
                 {/*        onClick={() => {*/}
