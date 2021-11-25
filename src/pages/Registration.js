@@ -1,25 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Container, Form, Button, Row} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useHistory} from "react-router-dom";
 import { SHOP_ROUTE} from "../utils/consts";
 import {useMutation} from "@apollo/client";
 import { ADD_USER} from "../gql/query";
-import {userIsLogin} from "../store/cache";
+import {authNameVar, userIsLogin} from "../store/cache";
+
 
 
 
 const Registration = () => {
     const history = useHistory();
+
+    const [validated, setValidated] = useState(false);
     let input_name, input_phone, input_email, input_pwd, input_img;
     const [addUser, {data}] = useMutation(ADD_USER);
     const createUser = (e) => {
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
             e.preventDefault();
-
-            let phone = Number(input_phone.value)
-        if(!phone){
-            return
+            e.stopPropagation();
         }
+
+        setValidated(true);
+        e.preventDefault();
+        let phone = Number(input_phone.value)
+        if(!phone) phone = 0;
+
 
         console.log({ variables: {
                 user_name: input_name.value,
@@ -33,7 +41,7 @@ const Registration = () => {
             addUser({ variables: {
                 user_name: input_name.value,
                 pwd: input_pwd.value,
-                phone: Number(input_phone.value),
+                phone: phone,
         email: input_email.value,
         image: input_img.value,
         role: 'buyer'
@@ -41,7 +49,10 @@ const Registration = () => {
  } });
     const n = input_name.value;
     const p = input_pwd.value;
-    setTimeout(()=>userIsLogin({ isAuth: true, name: n, pwd: p}), 2000)
+    setTimeout(()=> {
+        userIsLogin({isAuth: true, name: n, pwd: p})
+        authNameVar({name: n, pwd: p})
+    }, 2000)
 
     history.push(SHOP_ROUTE)
     }
@@ -51,16 +62,19 @@ const Registration = () => {
         >
             <Card style={{width: 600}} className='p-5'>
                 <h2 className='m-auto'>Регистрация</h2>
-                <Form className='d-flex flex-column' onSubmit={e => createUser(e) }>
+                <Form className='d-flex flex-column' validated={validated} onSubmit={createUser}>
                     <Form.Control
                         type="text"
                         className='mt-2' placeholder='Введите ваш логин...'
                         ref={node => {input_name = node;}}
+                        required
                     />
+                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     <Form.Control
                         type="password"
                         className='mt-2' placeholder='Введите ваш пароль...'
                         ref={node => {input_pwd = node;}}
+                        required
                     />
                     <Form.Control
                         className='mt-2' placeholder='Введите ваш image...'
@@ -77,6 +91,7 @@ const Registration = () => {
                         type="tel"
                         className='mt-2' placeholder='Введите ваш телефон...'
                         ref={node => {input_phone = node;}}
+                        required
                     />
                     <Row className='d-flex justify-content-between align-items-center mt-3 px-3'>
 

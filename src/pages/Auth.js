@@ -12,6 +12,7 @@ const Auth = () => {
     const user = useReactiveVar(userIsLogin)
     let input_name, input_pwd;
 
+
     return (
         <Container className='d-flex justify-content-center align-items-center'
                    style={{height: window.innerHeight - 54}}
@@ -20,11 +21,11 @@ const Auth = () => {
                 <h2 className='m-auto'>Авторизация</h2>
                 <Form className='d-flex flex-column' onSubmit={e => {
                     e.preventDefault();
-                    authNameVar(input_name.value)
+                    authNameVar({name: input_name.value, pwd: input_pwd.value})
 
 
 
-                    userIsLogin({...user, isAuth: true, name: input_name.value, pwd: input_pwd.value})
+                    // userIsLogin({...user, isAuth: false, name: input_name.value, pwd: input_pwd.value})
                     history.push(SHOP_ROUTE)
                 }}>
                     <Form.Control
