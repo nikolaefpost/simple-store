@@ -5,6 +5,8 @@ import {useQuery, useReactiveVar} from '@apollo/client';
 import {authNameVar, errorVar, isAdminVar, userIsLogin, userVar} from "../store/cache";
 import {GET_USER} from "../gql/query";
 import NabarView from "./NabarView";
+import ErrorBoundary from "./ErrorBoundary";
+
 
 
 // const useImperativeQuery = (query) => {
@@ -22,11 +24,12 @@ const NavBar = () => {
     const isAdmin = useReactiveVar(isAdminVar)
     const goToPersonalPage = ()=> history.push(PERSONAL_ROUTE)
 
+
     const { loading, error, data } = useQuery(GET_USER, {
         variables: { user_name: authUser.name, pwd: authUser.pwd }});
     if (loading) return <p>Loading...</p>;
     if (error) console.log(error);
-
+    console.log(data)
     if (data && data.checkUserPassword){
         isAdminVar( data.checkUserPassword.role === 'admin' ? true: false)
         localStorage.setItem ("registeredUser", JSON.stringify(data.checkUserPassword));
@@ -35,20 +38,21 @@ const NavBar = () => {
     }
     if(data?.checkUserPassword && data.checkUserPassword.user_name === authUser.name) {
         userIsLogin(true)
+    } else {
+        errorVar(true)
+
     }
-    // else {
-    //     errorVar(true)
-    //     history.push(AUTH_ROUTE)
-    // }
 
-
+// if(!data) return null
 
     return (
+        <ErrorBoundary>
         <NabarView
             isAdmin={isAdmin}
             data={data}
             goToPersonalPage={goToPersonalPage}
         />
+            </ErrorBoundary>
     );
 };
 

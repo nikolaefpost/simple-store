@@ -5,6 +5,7 @@ import {cartBrandsVar} from "../store/cache";
 import  React from "react";
 import {GET_BRANDS} from "../gql/query";
 import BrandBarSorting from "./BrandBarSorting";
+import ListGroup from "react-bootstrap/ListGroup";
 
 
 const BrandBar = () => {
@@ -15,9 +16,9 @@ const BrandBar = () => {
     cartBrandsVar(data.queryBrand)
 
     return (
-        <Row className='d-flex'>
+        <ListGroup horizontal className='flex-wrap' >
             <BrandBarSorting/>
-        </Row>
+        </ListGroup>
     );
 };
 

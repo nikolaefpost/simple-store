@@ -11,7 +11,7 @@ const Search = () => {
     const history = useHistory();
 
     return (
-        <Form className="d-flex"
+        <Form draggable={false} className="d-flex"
               onSubmit={e => {
                   e.preventDefault();
                   console.log(input_search.value)

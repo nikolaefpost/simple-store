@@ -1,6 +1,8 @@
 import Admin from "./pages/admin";
-import { ADMIN_ROUTE, AUTH_ROUTE, BASKET_ROUTE, DEVICE_ROUTE, LOGIN_ROUTE, PERSONAL_ROUTE, PROFILE_ROUTE,
-    REGISTRATION_ROUTE, REVIEW_ROUTE, SEARCH_ROUTE, SHOP_ROUTE, TODO_ROUTE} from "./utils/consts";
+import {
+    ADMIN_ROUTE, AUTH_ROUTE, BASKET_ROUTE, DEVICE_ROUTE, ERROR_ROUTE, LOGIN_ROUTE, PERSONAL_ROUTE, PROFILE_ROUTE,
+    REGISTRATION_ROUTE, REVIEW_ROUTE, SEARCH_ROUTE, SHOP_ROUTE, TODO_ROUTE
+} from "./utils/consts";
 import Basket from "./pages/Basket";
 import Shop from "./pages/Shop";
 import Registration from "./pages/Registration";
@@ -11,6 +13,7 @@ import PersonalArea from "./pages/PersonalArea";
 import TodoList from "./pages/TodoList";
 import Review from "./pages/Review";
 import SearchPage from "./pages/SearchPage";
+import ErrorPage from "./pages/ErrorPage";
 
 export  const authRoutes = [
     {
@@ -64,5 +67,9 @@ export  const publicRoutes = [
     {
         path: SEARCH_ROUTE,
         Component: SearchPage
+    },
+    {
+        path: ERROR_ROUTE,
+        Component: ErrorPage
     }
 ]

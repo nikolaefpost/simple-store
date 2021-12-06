@@ -10,3 +10,5 @@ export const PERSONAL_ROUTE = '/personal'
 export const TODO_ROUTE = '/todo'
 export const REVIEW_ROUTE = '/review'
 export const SEARCH_ROUTE = '/search'
+export const ERROR_ROUTE = '/error'
+

@@ -8,7 +8,9 @@ const TypeBarSorting = () => {
     return (
         <>
             {cartCategories.map(item =>
-                <ListGroup.Item style={{cursor: 'pointer'}}
+                <ListGroup.Item action variant="light"
+                                className="shadow border-light my-1 rounded"
+                                style={{cursor: 'pointer'}}
                                 active={item.isSelected}
                                 onClick={()=> TypeIsSelected(item.name)}
                                 key={item.name[0]}>

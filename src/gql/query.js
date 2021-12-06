@@ -247,6 +247,7 @@ export const ADD_USER = gql`
             numUids
             user {
                 user_name
+                
             }
         }
     }

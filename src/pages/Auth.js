@@ -21,11 +21,16 @@ const Auth = () => {
         >
             <Card style={{width: 600}} className='p-5'>
                 <h2 className='m-auto'>Авторизация</h2>
-                <Form className='d-flex flex-column' onSubmit={e => {
+                {error && <div className='m-auto text-danger'>логин или пароль введен не правильно</div>}
+                <Form
+                    className='d-flex flex-column'
+                    style={{border: error? '1px solid red': 'none'} }
+                    onSubmit={e => {
                     e.preventDefault();
                     authNameVar({name: input_name.value, pwd: input_pwd.value})
-
-                }}>
+                    }}
+                    onFocus={()=>errorVar(false)}
+                >
                     <Form.Control
                         className='mt-2' placeholder='Введите ваш логин...'
                         ref={node => {input_name = node;}}
@@ -42,7 +47,6 @@ const Auth = () => {
                     </Row>
 
                 </Form>
-                {error && <div>Такого логина нет</div>}
             </Card>
 
 
